@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ЗОЖ - наше всё!</title>
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic|Playfair+Display:400,700&subset=latin,cyrillic">
-  
   <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
@@ -17,10 +15,12 @@
               <span>O</span>
               <span>Ж</span>
             </a>
-            <form action="" method="get" id="searchform">
+            <form action="" id="searchform">
                 <input type="text" placeholder="Искать на сайте...">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
+            <button id="auth" type="button">Войти</button>
+            <button id="reg" type="button">Зарегестрироваться</button>
             <ul id="menu">
               <li><a href="">О нас</a></li>
               <li><a href="">Программы и курсы</a></li>
@@ -72,11 +72,23 @@
     </main>
     <footer>
         <div class="container">
-            <div id="qwe" class="footer-col"><span>Ждём Вам фидбэк:D</span></div>
+            <div class="footer-col"><span>Ждём Вам фидбэк:D</span></div>
             <div class="footer-col">
               <a href="ZOJ@gmail.com">ZOJ@gmail.com</a>
             </div>
           </div>
     </footer>
+    <script>
+      const reg = document.getElementById('reg');
+      const auth = document.getElementById('auth');
+      reg.addEventListener('click', ()=>{
+        alert('ZDAROVA TVARINA');
+      });
+      auth.addEventListener('click', ()=>{
+        var request = new XMLHttpRequest();
+        request.open('GET', 'Http://Localhost:8765?command=getAuthPage', true);
+        request.send();
+      });
+    </script>
 </body>
 </html>

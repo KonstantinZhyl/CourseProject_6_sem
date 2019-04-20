@@ -38,7 +38,7 @@ header:after, .container:after, footer:after, .widget-posts-list li:after, #subs
     margin: 0 auto;
     width: 100%;
     max-width: 960px;
-    padding: 0 15px;
+    padding: 0 0;
 } 
 header {
     width: 100%;
@@ -70,13 +70,34 @@ header {
 .logo span:nth-child(even) {
     background: #F8B763;
 }
+#auth {
+    height: 40px;
+    width: 50px;
+    margin-left: 30px;
+    margin-right: 10px;
+    background-color: yellow;
+    color: rgb(7, 10, 219);
+    border-radius: 45%;
+    margin-top: auto;
+}
+#reg {
+    height: 40px;
+    width: 150px;
+    margin-left: 10px;
+    margin-right: 0px;
+    background-color: yellow;
+    color: rgb(7, 10, 219);
+    border-radius: 45%;
+    margin-top: auto;
+}
 /* меню */
 #menu {
-    float: right;
+    float: left;
+    margin-left: 10px;
 }
 #menu li {
     display: inline-block;
-    margin-right: 30px;
+    margin-right: 20px;
 }
 #menu a {
     color: #111;
@@ -95,7 +116,7 @@ header {
 /* форма поиска */
 #searchform {
     float: right;
-    margin-left: 46px;
+    margin-left: 16px;
     display: block;
     position: relative;
 }
@@ -158,28 +179,8 @@ header {
 .logo span:nth-child(even) {
     background: #F8B763;
 }
-/* меню */
-#menu {
-    float: right;
-}
-#menu li {
-    display: inline-block;
-    margin-right: 30px;
-}
-#menu a {
-    color: #111;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-    display: block;
-    line-height: 40px;
-}
-#menu a:hover {
-    color: #EF5A42;
-}
-#menu li:last-child  {
-    margin-right: 0;
-}
+
+
 /* форма поиска */
 #searchform {
     margin-left: 46px;

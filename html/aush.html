@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../css/authPage.css">
+</head>
+<body>
+    <label class="hi">Добро пожаловать!</label>
+    <form>
+        <input id="login" placeholder="Логин"/> 
+        <input id="pass" placeholder="Пароль"/>
+    </form>
+    <button id="go" type="button"> Войти </button>
+    <script>
+        const go = document.getElementById('go');
+        const login = document.getElementById('login');
+        const password = document.getElementById('pass');
+        go.addEventListener('click', ()=>{
+            var request = new XMLHttpRequest();
+            request.open('GET', 'Http://Localhost:8765?command=Auth&login='+login.innerHTML+'&password='+password.innerHTML, true);
+            request.send();
+        })
+    </script>
+</body>
+</html>
