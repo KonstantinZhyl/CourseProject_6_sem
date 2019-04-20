@@ -20,6 +20,7 @@
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
             <button id="auth" type="button">Войти</button>
+            <a href="/html/aush.html">Войти по настоящему</a>
             <button id="reg" type="button">Зарегестрироваться</button>
             <ul id="menu">
               <li><a href="">О нас</a></li>
@@ -86,7 +87,7 @@
       });
       auth.addEventListener('click', ()=>{
         var request = new XMLHttpRequest();
-        request.open('GET', 'Http://Localhost:8765?command=getAuthPage', true);
+        request.open('GET', 'Http://Localhost:8765/html/aush.html', true);
         request.send();
       });
     </script>
