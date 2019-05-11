@@ -21,6 +21,15 @@
             var request = new XMLHttpRequest();
             request.open('GET', 'Http://Localhost:8765?command=Auth&login='+login.innerHTML+'&password='+password.innerHTML, true);
             request.send();
+            request.onreadystatechange = function() {
+                if (this.readyState != 4) return;
+                if (this.status != 200) {
+                    alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
+                    return;
+                } else {
+                    document = JSON.parse(this.responseText());
+                }
+            }
         })
     </script>
 </body>

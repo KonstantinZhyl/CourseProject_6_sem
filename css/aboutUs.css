@@ -1,0 +1,25 @@
+.kostya {
+    display: inline-block;
+    width: 300px;
+    height: 300px; 
+    margin-left: 110px; 
+    border-radius: 150px;
+}
+
+.mat {
+    width: 300px;  
+    height: 300px; 
+    margin-left: 50px; 
+    border-radius: 150px;
+    margin-left: 200px;
+    float: left;
+}
+
+.orena {
+    display: inline-block;
+    float: right;
+    width: 300px;  
+    height: 300px; 
+    border-radius: 150px;
+    margin-right: 200px;
+}

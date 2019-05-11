@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ЗОЖ - наше всё!</title>
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
     <header>
@@ -15,17 +15,12 @@
               <span>O</span>
               <span>Ж</span>
             </a>
-            <form action="" id="searchform">
-                <input type="text" placeholder="Искать на сайте...">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
             <button id="auth" type="button">Войти</button>
-            <a href="/html/aush.html">Войти по настоящему</a>
-            <button id="reg" type="button">Зарегестрироваться</button>
+            <button id="reg" type="button">Зарегистрироваться</button>
             <ul id="menu">
-              <li><a href="">О нас</a></li>
-              <li><a href="">Программы и курсы</a></li>
-              <li><a href="">Об Авторах</a></li>
+              <li><a href="aboutUs.html">О нас</a></li>
+              <li><a href="ingestion.html">Питание</a></li>
+              <li><a href="activity.html">Активность</a></li>
             </ul>
           </nav>      
     </header>
@@ -33,7 +28,7 @@
         <div class="container">
             <div class="posts-list">
               <article id="post-1" class="post">
-                <div class="post-image"><a href=""><img src="./images/fk.jpg"></a></div>
+                <div class="post-image"><a href=""><img src="../images/fk.jpg"></a></div>
                 <div class="post-content">
                   <div class="category"><a href="">ЗОЖ</a></div>
                   <h2 class="post-title">Физическая культура</h2>
@@ -87,8 +82,17 @@
       });
       auth.addEventListener('click', ()=>{
         var request = new XMLHttpRequest();
-        request.open('GET', 'Http://Localhost:8765/html/aush.html', true);
+        request.open('GET', 'Http://Localhost:8765?command=getAuthPage', true);
         request.send();
+        request.onload = function() {
+          
+          if (this.status != 200) {
+            alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
+            return;
+          } else {
+            document = this.responseText;
+          }
+        }
       });
     </script>
 </body>
