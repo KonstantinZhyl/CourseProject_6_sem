@@ -93,7 +93,7 @@ header {
 /* меню */
 #menu {
     float: left;
-    margin-left: 10px;
+    margin-left: 200px;
 }
 #menu li {
     display: inline-block;

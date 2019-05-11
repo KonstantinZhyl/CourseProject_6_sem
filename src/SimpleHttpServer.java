@@ -29,6 +29,7 @@ public class SimpleHttpServer {
         }
 
         public byte[] resolve(String url) throws IOException {
+            System.out.println(url);
             if (url.equals("/")) {
                 url = "html/main.html";
             }
