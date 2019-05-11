@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/ingestion.css">
-    <title>Ingestion</title>
+    <link rel="stylesheet" type="text/css" href="../css/activity.css">
+    <title>Activity</title>
 </head>
 <body>
     <header>
@@ -24,16 +25,22 @@
           </nav>      
     </header>
     <main>
-        <h3>Ваше питание</h3>
+        <h3>Ваша активность</h3>
         <div class="graph">
             
         </div>
         <div class="info">
-            <h2>Текущая диета : <span id='diet'>default</span></h2> 
-            <button id="change_diet" class="butt" type="button">Сменить диету</button>
-            <br/>
-            <button id="add_ingestion" class="button_diet2" type="button">Добавить приём пищи</button>
+            <h2>Шаги за сегодня : <input id='shag'/></h2> 
+            <button class="butt" type="button">Добавить шаги</button>
+            
+            <h2>Тренировка за сегодня : <input id='tren'/></h2> 
+            <button class="button_diet2" type="button">Добавить тренировку</button>
+            
+            <h2>Сон за сегодня : <input id='son'/></h2> 
+            <button class="button_diet2" type="button">Добавить сон</button>
+            <hr class="line"/>
         </div>
+        
         <div class="table">
             <h2>Данные с <input id="ot" type="date"/> по <input id="po" type="date"/></h2>
             <button id="pol" class="butt" type="button">Получить</button>
@@ -42,7 +49,6 @@
             </div>
         </div>
     </main>
-    
     <footer>
         <div class="container">
             <div class="footer-col"><span>Ждём Вам фидбэк:D</span></div>
