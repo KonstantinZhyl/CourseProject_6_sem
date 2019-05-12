@@ -53,6 +53,7 @@
             document.cookie = 'login='+login;
             document.cookie = 'password='+password;
             request.open('POST', '/');
+            formData.append("command", "registration");
             request.send(fromData);
             request.onreadystatechange = function(){
                 if (this.readyState != 4) return;
