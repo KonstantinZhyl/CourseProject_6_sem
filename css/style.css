@@ -20,6 +20,11 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
     letter-spacing: 1px;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+}
 body {
     font-family: 'Open Sans', arial, sans-serif;
     font-size: 14px;
@@ -40,6 +45,10 @@ header:after, .container:after, footer:after, .widget-posts-list li:after, #subs
     max-width: 960px;
     padding: 0 0;
 } 
+
+main {
+    min-height: calc(100vh - 175px);
+}
 header {
     width: 100%;
     background: rgb(7, 10, 219);
