@@ -46,32 +46,19 @@
             const login = document.getElementById('login').value;
             const password = document.getElementById('pass').value;
             var request = new XMLHttpRequest();
-<<<<<<< HEAD
             request.open('GET', 'Http://Localhost:8765', true);
             request.setRequestHeader('command', 'aush');
             request.setRequestHeader('login', login);
             request.setRequestHeader('password', password);
-=======
-            request.open('GET', '/html/activity.html', true);
->>>>>>> master
             document.cookie = 'login='+login;
             document.cookie = 'password='+password;
             request.send();
             request.onload = function() {
-<<<<<<< HEAD
-=======
-                if (this.readyState != 4) return;
->>>>>>> master
                 if (this.status != 200) {
                     alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
                     return;
                 } else {
-<<<<<<< HEAD
                     window.open('main.html');
-=======
-                    alert('SOSI')
-                    window.open('/html/main.html')
->>>>>>> master
                 }
             }
         })
