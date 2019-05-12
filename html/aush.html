@@ -5,29 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../css/authPage.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>Авторизация</title>
 </head>
 <body>
-    <label class="hi">Добро пожаловать!</label>
-    <form>
-        <input id="login" placeholder="Логин"/> 
-        <input id="pass" placeholder="Пароль"/>
-    </form>
-    <button id="go" type="button"> Войти </button>
-    <script>
+    <header>
+        <nav class="container">
+            <a class="logo" href="">
+                <span>З</span>
+                <span>O</span>
+                <span>Ж</span>
+            </a>
+            <ul id="menu">
+                <li><a href="main.html">Главная</a></li>
+                <li><a href="aboutUs.html">О нас</a></li>
+                <li><a href="ingestion.html">Питание</a></li>
+                <li><a href="activity.html">Активность</a></li>
+            </ul>
+            </nav>      
+    </header>
+    <main>
+        <label class="hi">Добро пожаловать!</label>
+        <form>
+            <input id="login" placeholder="Логин"/> 
+            <input id="pass" placeholder="Пароль"/>
+        </form>
+        <button id="go" type="button"> Войти </button>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-col"><span>Ждём Вам фидбэк:D</span></div>
+            <div class="footer-col">
+                <a href="ZOJ@gmail.com">ZOJ@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+    <script type='text/javascript'>
         const go = document.getElementById('go');
-        const login = document.getElementById('login');
-        const password = document.getElementById('pass');
         go.addEventListener('click', ()=>{
+            const login = document.getElementById('login').value;
+            const password = document.getElementById('pass').value;
             var request = new XMLHttpRequest();
-            request.open('GET', 'Http://Localhost:8765?command=Auth&login='+login.innerHTML+'&password='+password.innerHTML, true);
+            request.open('GET', 'Http://Localhost:8765', true);
+            request.setRequestHeader('command', 'aush');
+            request.setRequestHeader('login', login);
+            request.setRequestHeader('password', password);
+            document.cookie = 'login='+login;
+            document.cookie = 'password='+password;
             request.send();
-            request.onreadystatechange = function() {
-                if (this.readyState != 4) return;
+            request.onload = function() {
                 if (this.status != 200) {
                     alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
                     return;
                 } else {
-                    document = JSON.parse(this.responseText());
+                    window.open('main.html');
                 }
             }
         })

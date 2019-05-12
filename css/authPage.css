@@ -36,3 +36,7 @@ body{
     font-size: 45px;
     text-align: center;
 }
+
+main {
+    height: 39em;
+}

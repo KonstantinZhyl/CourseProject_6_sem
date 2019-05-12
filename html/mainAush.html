@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/ingestion.css">
+    <link rel="stylesheet" type="text/css" href="../css/mainAush.css">
+    <title>ЗОЖ - наше всё!</title>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a class="logo" href="">
+                <span>З</span>
+                <span>O</span>
+                <span>Ж</span>
+            </a>
+            <button id="exit" type="button">Выйти</button>
+            <a href="editing.html"><label id="user"></label></a>
+            <ul id="menu">
+                <li><a href="main.html">Главная</a></li>
+                <li><a href="aboutUs.html">О нас</a></li>
+                <li><a href="ingestion.html">Питание</a></li>
+                <li><a href="activity.html">Активность</a></li>
+            </ul>
+            </nav>      
+    </header>
+    <main>
+        <div class="container">
+            <div class="posts-list">
+                <article id="post-1" class="post">
+                <div class="post-image"><a href=""><img src="../images/fk.jpg"></a></div>
+                <div class="post-content">
+                    <div class="category"><a href="">ЗОЖ</a></div>
+                    <h2 class="post-title">Физическая культура</h2>
+                    <p>Спорт это круто!</p>
+                    <div class="post-footer">
+                    <a class="more-link" href="">Продолжить чтение</a>
+                    <div class="post-social">
+                        <a href="" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href="" target="_blank"><i class="fa fa-twitter"></i></a>
+                        <a href="" target="_blank"><i class="fa fa-pinterest"></i></a>
+                    </div>
+                    </div>
+                </div>
+                </article>
+                <article id="post-2" class="post">
+                ...
+                </article>
+            </div>
+            <aside>
+                <div class="widget">
+                    <h3 class="widget-title">Категории</h3>
+                    <ul class="widget-category-list">
+                    <li><a href="">Спортивное питание</a></li>
+                    <li><a href="">Программы тренировок</a></li>
+                    <li><a href="">Здоровый режим дня</a></li>
+                    </ul>
+                </div>
+                <div class="widget">
+                    <h3 class="widget-title">Подписка на рассылку</h3>
+                    <form action="" method="post" id="subscribe">
+                    <input type="email" name="email" placeholder="Ваш email" required>
+                    <button type="submit"><i class="fa fa-paper-plane-o"></i></button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-col"><span>Ждём Вам фидбэк:D</span></div>
+            <div class="footer-col">
+                <a href="ZOJ@gmail.com">ZOJ@gmail.com</a>
+            </div>
+            </div>
+    </footer>
+    <script type='text/javascript'>
+        function getCookie(name) {
+            var matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+        document.getElementById('user').innerHTML = getCookie('login');
+        const exit = document.getElementById('exit');
+        exit.addEventListener('click',() => {
+            document.cookie = document.cookie.substring(document.cookie.indexOf(' ')+1);
+            document.cookie = document.cookie.substring(document.cookie.indexOf(' ')+1);
+            window.open('main.html');
+        });
+    </script>
+</body>
+</html>
