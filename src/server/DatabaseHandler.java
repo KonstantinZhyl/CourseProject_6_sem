@@ -241,13 +241,15 @@ public class DatabaseHandler extends Configs {
         JsonArray result_array = new JsonArray();
         Map object;
 
-        rs = stmt.executeQuery("SELECT id, type, description, calories FROM " + DIET_TABLE);
+        rs = stmt.executeQuery("SELECT id, name, calories, protein, fat, carbons FROM " + PRODUCT_TABLE);
         while (rs.next()) {
-            object = new LinkedHashMap(4);
+            object = new LinkedHashMap(6);
             object.put("id", rs.getInt("id"));
-            object.put("id", rs.getString("type"));
-            object.put("id", rs.getString("description"));
-            object.put("id", rs.getInt("calories"));
+            object.put("name", rs.getString("name"));
+            object.put("calories", rs.getString("calories"));
+            object.put("protein", rs.getInt("protein"));
+            object.put("fat", rs.getInt("fat"));
+            object.put("carbons", rs.getInt("carbons"));
             result_array.add((JsonValue) object);
         }
         result.put("Products", result_array);
