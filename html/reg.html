@@ -48,13 +48,26 @@
     <script type='text/javascript'>
         const reg = document.getElementById('reg');
         reg.addEventListener('click', () => {
+            const name = document.getElementById('name').value;
+            const surname = document.getElementById('surname').value;
+            const login = document.getElementById('login').value;
+            const password = document.getElementById('password').value;
+            const mail = document.getElementById('mail').value;
+            const date = document.getElementById('date').value;
+            var json = JSON.stringify({
+                name: name,
+                surname: surname,
+                login: login,
+                password: password,
+                mail: mail,
+                date: date,
+            });
             var request = new XMLHttpRequest();
-            var fromData = new FormData(document.forms.person);
             document.cookie = 'login='+login;
             document.cookie = 'password='+password;
-            request.open('POST', '/');
-            formData.append("command", "registration");
-            request.send(fromData);
+            request.open('POST', '/', true);
+            request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            request.send(json);
             request.onreadystatechange = function(){
                 if (this.readyState != 4) return;
                 if (this.status != 200) {
