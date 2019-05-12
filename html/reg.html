@@ -27,13 +27,13 @@
     </header>
     <main>
         <h3>Регистрация</h3>
-        <form>
-            <center><input id="name" class="data" placeholder="Имя"/></center>
-            <center><input id="surname" class="data" placeholder="Фамилия"/></center>
-            <center><input id="login" class="data" placeholder="Логин"/></center>
-            <center><input id="password" class="data" placeholder="Пароль"/></center>
-            <center><input id="mail" class="data" placeholder="default@gmail.com"/></center>
-            <center><input id="date" class="data"  type="date"/></center>
+        <form name="person">
+            <center><input id="name" name="name" class="data" placeholder="Имя"/></center>
+            <center><input id="surname" name="surname" class="data" placeholder="Фамилия"/></center>
+            <center><input id="login" name="login" class="data" placeholder="Логин"/></center>
+            <center><input id="password" name="password" class="data" placeholder="Пароль"/></center>
+            <center><input id="mail" name="mail" class="data" placeholder="default@gmail.com"/></center>
+            <center><input id="date" name="date" class="data"  type="date"/></center>
         </form>
         <center><button id="reg" type="button">Зарегистрироваться</button></center>
     </main>
@@ -54,6 +54,7 @@
         const date = document.getElementById('date').value;
         const reg = document.getElementById('reg');
         var request = new XMLHttpRequest();
+        var fromData = new FormData(document.forms.person);
         document.cookie = 'login='+login;
         document.cookie = 'password='+password;
         request.setRequestHeader('command', 'reg');
@@ -63,8 +64,8 @@
         request.setRequestHeader('password', password);
         request.setRequestHeader('mail', mail);
         request.setRequestHeader('date', date);
-        request.open('POST', '/', true);
-        request.send();
+        request.open('POST', '/');
+        request.send(fromData);
         request.onload() = function(){
             if (this.status != 200) {
                 alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
