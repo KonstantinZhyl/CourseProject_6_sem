@@ -58,7 +58,7 @@ public class API extends DatabaseHandler {
         return command;
     }
 
-    void processGetRequest(HttpExchange exchange) throws IOException, SQLException, ClassNotFoundException {
+    void processGetRequest() throws IOException, SQLException, ClassNotFoundException {
         switch (this.command) {
             case "registration":
                 registrate();
@@ -66,6 +66,16 @@ public class API extends DatabaseHandler {
             default:
                 sendResponse(200);
 
+        }
+    }
+
+    void processPostRequest() throws IOException, SQLException, ClassNotFoundException {
+        switch (this.command) {
+            case "registration":
+                registrate();
+                break;
+            default:
+                sendResponse(200);
         }
     }
 

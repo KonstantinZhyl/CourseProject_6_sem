@@ -28,7 +28,7 @@ public class SimpleHttpServer {
             API api = new API(exchange);
             if (exchange.getRequestMethod().equals("GET"))  {
                 try {
-                    api.processGetRequest(exchange);
+                    api.processGetRequest();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
@@ -37,19 +37,33 @@ public class SimpleHttpServer {
             }
 
             if (exchange.getRequestMethod().equals("POST"))  {
-//                page = processPostRequest(exchange);
+                try {
+                    api.processGetRequest();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
     static class Auth extends Authenticator {
+        String[] save_list = {"/html/main.html", "/images", "/css", "/favicon", "/html/aush.html", "/", "/html/reg.html"};
+
         @Override
         public Result authenticate(HttpExchange httpExchange) {
             String url = httpExchange.getRequestURI().toString();
             try {
-                if (url.equals("/") || url.startsWith("/images") || url.startsWith("/css") || url.startsWith("/favicon")
-                        || url.startsWith("/html/aush.html") || API.checkUserExistance(httpExchange))
+                boolean safe = false;
+                for (int i = 0; i < this.save_list.length; i++) {
+                    if (url.startsWith(this.save_list[i])) {
+                        safe = true;
+                    }
+                }
+                if (safe || API.checkUserExistance(httpExchange)) {
                     return new Success(new HttpPrincipal("c0nst", "realm"));
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -57,3 +71,4 @@ public class SimpleHttpServer {
         }
     }
 }
+
