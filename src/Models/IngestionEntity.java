@@ -1,17 +1,11 @@
-package Entity;
+package Models;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.sql.Date;
 
-@Entity
-@javax.persistence.Table(name = "ingestion", schema = "cp_6sem", catalog = "")
+import java.util.Date;
+
 public class IngestionEntity {
     private int id;
 
-    @Id
-    @javax.persistence.Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -22,8 +16,6 @@ public class IngestionEntity {
 
     private Date date;
 
-    @Basic
-    @javax.persistence.Column(name = "date", nullable = true)
     public Date getDate() {
         return date;
     }
@@ -34,8 +26,6 @@ public class IngestionEntity {
 
     private Integer calories;
 
-    @Basic
-    @javax.persistence.Column(name = "calories", nullable = true)
     public Integer getCalories() {
         return calories;
     }

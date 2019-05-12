@@ -1,17 +1,11 @@
-package Entity;
+package Models;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.sql.Date;
 
-@Entity
-@javax.persistence.Table(name = "indicators", schema = "cp_6sem", catalog = "")
+import java.util.Date;
+
 public class IndicatorsEntity {
     private int id;
 
-    @Id
-    @javax.persistence.Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -22,8 +16,6 @@ public class IndicatorsEntity {
 
     private Integer weight;
 
-    @Basic
-    @javax.persistence.Column(name = "weight", nullable = true)
     public Integer getWeight() {
         return weight;
     }
@@ -34,8 +26,6 @@ public class IndicatorsEntity {
 
     private Integer height;
 
-    @Basic
-    @javax.persistence.Column(name = "height", nullable = true)
     public Integer getHeight() {
         return height;
     }
@@ -46,8 +36,6 @@ public class IndicatorsEntity {
 
     private Integer pulse;
 
-    @Basic
-    @javax.persistence.Column(name = "pulse", nullable = true)
     public Integer getPulse() {
         return pulse;
     }
@@ -58,8 +46,6 @@ public class IndicatorsEntity {
 
     private Date lastUpdated;
 
-    @Basic
-    @javax.persistence.Column(name = "last_updated", nullable = true)
     public Date getLastUpdated() {
         return lastUpdated;
     }

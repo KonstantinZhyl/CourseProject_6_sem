@@ -15,7 +15,7 @@
               <span>O</span>
               <span>Ж</span>
             </a>
-            <button id="auth" type="button">Войти</button>
+            <button id="auth" type="button"><a href="/html/aush.html">Войти</a></button>
             <button id="reg" type="button">Зарегистрироваться</button>
             <ul id="menu">
               <li><a href="aboutUs.html">О нас</a></li>
@@ -74,26 +74,5 @@
             </div>
           </div>
     </footer>
-    <script>
-      const reg = document.getElementById('reg');
-      const auth = document.getElementById('auth');
-      reg.addEventListener('click', ()=>{
-        alert('ZDAROVA TVARINA');
-      });
-      auth.addEventListener('click', ()=>{
-        var request = new XMLHttpRequest();
-        request.open('GET', 'Http://Localhost:8765?command=getAuthPage', true);
-        request.send();
-        request.onload = function() {
-          
-          if (this.status != 200) {
-            alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
-            return;
-          } else {
-            document = this.responseText;
-          }
-        }
-      });
-    </script>
 </body>
 </html>

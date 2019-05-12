@@ -1,14 +1,9 @@
-package Entity;
+package Models;
 
-import javax.persistence.Entity;
 
-@Entity
-@javax.persistence.Table(name = "product", schema = "cp_6sem", catalog = "")
 public class ProductEntity {
     private int id;
 
-    @javax.persistence.Id
-    @javax.persistence.Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -19,8 +14,6 @@ public class ProductEntity {
 
     private String name;
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "name", nullable = true, length = 45)
     public String getName() {
         return name;
     }
@@ -31,8 +24,6 @@ public class ProductEntity {
 
     private Integer calories;
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "calories", nullable = true)
     public Integer getCalories() {
         return calories;
     }
@@ -43,8 +34,6 @@ public class ProductEntity {
 
     private Integer protein;
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "protein", nullable = true)
     public Integer getProtein() {
         return protein;
     }
@@ -55,8 +44,6 @@ public class ProductEntity {
 
     private Integer fat;
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "fat", nullable = true)
     public Integer getFat() {
         return fat;
     }
@@ -67,8 +54,6 @@ public class ProductEntity {
 
     private String carbons;
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "carbons", nullable = true, length = 45)
     public String getCarbons() {
         return carbons;
     }

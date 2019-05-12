@@ -1,14 +1,9 @@
-package Entity;
+package Models;
 
-import javax.persistence.Entity;
 
-@Entity
-@javax.persistence.Table(name = "exercise", schema = "cp_6sem", catalog = "")
 public class ExerciseEntity {
     private int id;
 
-    @javax.persistence.Id
-    @javax.persistence.Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -19,8 +14,6 @@ public class ExerciseEntity {
 
     private Integer count;
 
-    @javax.persistence.Basic
-    @javax.persistence.Column(name = "count", nullable = true)
     public Integer getCount() {
         return count;
     }
@@ -42,7 +35,6 @@ public class ExerciseEntity {
         return true;
     }
 
-    @Override
     public int hashCode() {
         int result = id;
         result = 31 * result + (count != null ? count.hashCode() : 0);

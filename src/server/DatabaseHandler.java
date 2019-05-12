@@ -1,5 +1,10 @@
 package server;
 
+import Models.DietEntity;
+import Models.ExerciseInfoEntity;
+import Models.TrainingInfoEntity;
+import Models.UserEntity;
+
 import java.io.IOException;
 import java.sql.*;
 
@@ -19,7 +24,7 @@ public class DatabaseHandler extends Configs {
         return dbConnection;
     }
 
-    public static boolean db_checkLoginExists(String login) throws SQLException, ClassNotFoundException {
+    public static boolean dbCheckLoginExists(String login) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT login FROM " + USER_TABLE);
@@ -31,7 +36,7 @@ public class DatabaseHandler extends Configs {
         return false;
     }
 
-    public static boolean db_checkUserExistance(String login, String password) throws SQLException, ClassNotFoundException {
+    public static boolean dbCheckUserExistance(String login, String password) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT login, password FROM " + USER_TABLE);
@@ -43,7 +48,7 @@ public class DatabaseHandler extends Configs {
         return false;
     }
 
-    public boolean insertUser(String login, String password, String name, String surname, String birthdate,
+    public boolean dbInsertUser(String login, String password, String name, String surname, String birthdate,
                               String email, String role) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + USER_TABLE + "(login, password, name, surname, email, role, birthdate)" +
@@ -60,7 +65,7 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
-    public boolean insertIndicator(int weight, int height, int pulse,
+    public boolean dbInsertIndicator(int weight, int height, int pulse,
                               String last_updated, int user_id) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + INDICATORS_TABLE + "(weight, height, pulse, last_updated, user_id)" +
@@ -75,7 +80,7 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
-    public boolean insertActivity(int user_id, int steps, int training_calories, int sleep,
+    public boolean dbInsertActivity(int user_id, int steps, int training_calories, int sleep,
                                   int activity_calories, int training_id) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + ACTIVITY_TABLE + "(user_id, steps, training_calories, sleep, activity_calories, training_id)" +
@@ -91,7 +96,7 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
-    public boolean insertExercise(int exercise_id, int training_id, int count) throws SQLException, ClassNotFoundException {
+    public boolean dbInsertExercise(int exercise_id, int training_id, int count) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + EXERCISE_TABLE + "(exercise_id, training_id, count)" +
                 " VALUES(?, ?, ?)";
@@ -103,7 +108,7 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
-    public boolean insertExerciseInfo(String name, int count, int calories_for_one) throws SQLException, ClassNotFoundException {
+    public boolean dbInsertExerciseInfo(String name, int count, int calories_for_one) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + EXERCISE_INFO_TABLE + "(name, count, calories_for_one)" +
                 " VALUES(?, ?, ?)";
@@ -115,7 +120,7 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
-    public boolean insertTraining(int training_id, int duration, int calories) throws SQLException, ClassNotFoundException {
+    public boolean dbInsertTraining(int training_id, int duration, int calories) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + TRAINING_TABLE + "(training_id, duration, calories)" +
                 " VALUES(?, ?, ?)";
@@ -127,7 +132,7 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
-    public boolean insertTrainingInfo(String description, String type, int intensity) throws SQLException, ClassNotFoundException {
+    public boolean dbInsertTrainingInfo(String description, String type, int intensity) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + TRAINING_INFO_TABLE + "(description, type, intensity)" +
                 " VALUES(?, ?, ?)";
@@ -139,7 +144,7 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
-    public boolean delRow(int id, String table_name) throws IOException, SQLException, ClassNotFoundException {
+    public boolean dbDelRow(int id, String table_name) throws IOException, SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String delete = "DELETE FROM " + table_name + " WHERE id = ?";
         PreparedStatement prSt = connection.prepareStatement(delete);
@@ -150,7 +155,7 @@ public class DatabaseHandler extends Configs {
 
 
 
-    public boolean updateDiet(int id, String type, String description, int calories)
+    public boolean dbUpdateDiet(int id, String type, String description, int calories)
             throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String update = "UPDATE " + DIET_TABLE + " SET type = ?, description = ?, calories = ? WHERE id = ?";
@@ -163,7 +168,7 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
-    public boolean updateTrainingInfo(int id, String description, String type, int intensity)
+    public boolean dbUpdateTrainingInfo(int id, String description, String type, int intensity)
             throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String update = "UPDATE " + TRAINING_INFO_TABLE + " SET description = ?, type = ?, intensity = ? WHERE id = ?";
@@ -176,7 +181,7 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
-    public boolean updateExerciseInfo(int id, String name, int count, int calories_for_one)
+    public boolean dbUpdateExerciseInfo(int id, String name, int count, int calories_for_one)
             throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String update = "UPDATE " + EXERCISE_INFO_TABLE + " SET name = ?, count = ?, calories_for_one = ? WHERE id = ?";
@@ -187,6 +192,135 @@ public class DatabaseHandler extends Configs {
         prSt.setInt(4, id);
         prSt.executeUpdate();
         return true;
+    }
+
+    public int getUserIdByLogin(String login) throws IOException, SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        Statement stmt = connection.createStatement();
+
+        ResultSet rs = stmt.executeQuery("SELECT id FROM " + USER_TABLE + " WHERE login = " + login);
+
+        int result = -1;
+        while (rs.next()) {
+            result = rs.getInt("id");
+            break;
+        }
+        return result;
+    }
+
+    public DietEntity[] dbGetAllDiet() throws IOException, SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        Statement stmt = connection.createStatement();
+        int count = 0;
+        ResultSet rs = stmt.executeQuery("select count(*) from " + DIET_TABLE);
+        while (rs.next()) {
+            count =  rs.getInt(1);
+        }
+
+        rs = stmt.executeQuery("SELECT id, type, description, calories FROM " + DIET_TABLE);
+        int i = 0;
+        DietEntity[] result = new DietEntity[count];
+        while (rs.next()) {
+            result[i] = new DietEntity();
+            result[i].setId(rs.getInt("id"));
+            result[i].setType(rs.getString("type"));
+            result[i].setDescription(rs.getString("description"));
+            result[i].setCalories(rs.getInt("calories"));
+            i++;
+        }
+        return result;
+    }
+
+    public ExerciseInfoEntity[] dbGetAllExersises() throws IOException, SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        Statement stmt = connection.createStatement();
+        int count = 0;
+        ResultSet rs = stmt.executeQuery("select count(*) from " + EXERCISE_INFO_TABLE);
+        while (rs.next()) {
+            count =  rs.getInt(1);
+        }
+
+        rs = stmt.executeQuery("SELECT id, name, count, calories_for_one  FROM " + EXERCISE_INFO_TABLE);
+        int i = 0;
+        ExerciseInfoEntity[] result = new ExerciseInfoEntity[count];
+        while (rs.next()) {
+            result[i] = new ExerciseInfoEntity();
+            result[i].setId(rs.getInt("id"));
+            result[i].setName(rs.getString("name"));
+            result[i].setCount(rs.getInt("count"));
+            result[i].setCaloriesForOne(rs.getInt("calories_for_one"));
+            i++;
+        }
+        return result;
+    }
+
+    public TrainingInfoEntity[] dbGetAllTrainings() throws IOException, SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        Statement stmt = connection.createStatement();
+        int count = 0;
+        ResultSet rs = stmt.executeQuery("select count(*) from " + TRAINING_INFO_TABLE);
+        while (rs.next()) {
+            count =  rs.getInt(1);
+        }
+
+        rs = stmt.executeQuery("SELECT id, description, type, intensity FROM " + TRAINING_INFO_TABLE);
+        int i = 0;
+        TrainingInfoEntity[] result = new TrainingInfoEntity[count];
+        while (rs.next()) {
+            result[i] = new TrainingInfoEntity();
+            result[i].setId(rs.getInt("id"));
+            result[i].setDescription(rs.getString("description"));
+            result[i].setType(rs.getString("type"));
+            result[i].setIntensity(rs.getInt("intensity"));
+            i++;
+        }
+        return result;
+    }
+
+    public ExerciseInfoEntity[] dbGetAllExersises(int user_id, int exersice_id) throws IOException, SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        Statement stmt = connection.createStatement();
+        int count = 0;
+        ResultSet rs = stmt.executeQuery("select count(*) from " + EXERCISE_INFO_TABLE + "WHERE ");
+         while (rs.next()) {
+            count =  rs.getInt(1);
+        }
+
+        rs = stmt.executeQuery("SELECT id, name, count, calories_for_one  FROM " + EXERCISE_INFO_TABLE);
+        int i = 0;
+        ExerciseInfoEntity[] result = new ExerciseInfoEntity[count];
+        while (rs.next()) {
+            result[i] = new ExerciseInfoEntity();
+            result[i].setId(rs.getInt("id"));
+            result[i].setName(rs.getString("name"));
+            result[i].setCount(rs.getInt("count"));
+            result[i].setCaloriesForOne(rs.getInt("calories_for_one"));
+            i++;
+        }
+        return result;
+    }
+
+    public TrainingInfoEntity[] dbGetAllTrainings() throws IOException, SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        Statement stmt = connection.createStatement();
+        int count = 0;
+        ResultSet rs = stmt.executeQuery("select count(*) from " + TRAINING_INFO_TABLE);
+        while (rs.next()) {
+            count =  rs.getInt(1);
+        }
+
+        rs = stmt.executeQuery("SELECT id, description, type, intensity FROM " + TRAINING_INFO_TABLE);
+        int i = 0;
+        TrainingInfoEntity[] result = new TrainingInfoEntity[count];
+        while (rs.next()) {
+            result[i] = new TrainingInfoEntity();
+            result[i].setId(rs.getInt("id"));
+            result[i].setDescription(rs.getString("description"));
+            result[i].setType(rs.getString("type"));
+            result[i].setIntensity(rs.getInt("intensity"));
+            i++;
+        }
+        return result;
     }
 
 
@@ -351,25 +485,4 @@ public class DatabaseHandler extends Configs {
 //        return result;
 //    }
 //
-//    public PhoneMessage getPhoneById(int id) throws IOException, SQLException, ClassNotFoundException {
-//        Connection connection = getDbConnection();
-//        Statement stmt = connection.createStatement();
-//
-//        ResultSet rs = stmt.executeQuery("SELECT idModel, name, brand, screen, camera, processor, " +
-//                "description, picName FROM " + PHONE_TABLE + " WHERE idModel = " + id);
-//
-//        PhoneMessage result = new PhoneMessage();
-//        while (rs.next()) {
-//            result.setId(rs.getInt("idModel"));
-//            result.setName(rs.getString("name"));
-//            result.setBrand(rs.getString("brand"));
-//            result.setScreen(rs.getDouble("screen"));
-//            result.setProcessor(rs.getString("processor"));
-//            result.setCamera(rs.getInt("camera"));
-//            result.setDescription(rs.getString("description"));
-//            result.setPicName(rs.getString("picName"));
-//            break;
-//        }
-//        return result;
-//    }
 }

@@ -1,16 +1,9 @@
-package Entity;
+package Models;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
-@Entity
-@javax.persistence.Table(name = "training_info", schema = "cp_6sem", catalog = "")
 public class TrainingInfoEntity {
     private int id;
 
-    @Id
-    @javax.persistence.Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -21,8 +14,6 @@ public class TrainingInfoEntity {
 
     private String description;
 
-    @Basic
-    @javax.persistence.Column(name = "description", nullable = true, length = 1000)
     public String getDescription() {
         return description;
     }
@@ -33,8 +24,6 @@ public class TrainingInfoEntity {
 
     private String type;
 
-    @Basic
-    @javax.persistence.Column(name = "type", nullable = true, length = 45)
     public String getType() {
         return type;
     }
@@ -45,8 +34,6 @@ public class TrainingInfoEntity {
 
     private Integer intensity;
 
-    @Basic
-    @javax.persistence.Column(name = "intensity", nullable = true)
     public Integer getIntensity() {
         return intensity;
     }

@@ -1,9 +1,6 @@
-package Entity;
+package Models;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name = "user", schema = "cp_6sem", catalog = "")
 public class UserEntity {
     private int id;
     private String name;
@@ -11,8 +8,6 @@ public class UserEntity {
     private String login;
     private String password;
 
-    @Id
-    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -21,8 +16,6 @@ public class UserEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name", nullable = true, length = 45)
     public String getName() {
         return name;
     }
@@ -31,8 +24,6 @@ public class UserEntity {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "surname", nullable = true, length = 45)
     public String getSurname() {
         return surname;
     }
@@ -41,8 +32,6 @@ public class UserEntity {
         this.surname = surname;
     }
 
-    @Basic
-    @Column(name = "login", nullable = true, length = 45)
     public String getLogin() {
         return login;
     }
@@ -51,8 +40,6 @@ public class UserEntity {
         this.login = login;
     }
 
-    @Basic
-    @Column(name = "password", nullable = true, length = 45)
     public String getPassword() {
         return password;
     }

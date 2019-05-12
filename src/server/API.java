@@ -12,14 +12,23 @@ import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.List;
 
 public class API extends DatabaseHandler {
 
     static boolean checkUserExistance(HttpExchange httpExchange) throws SQLException, ClassNotFoundException {
         Headers headers = httpExchange.getRequestHeaders();
-        String login = headers.getFirst("login");
-        String password = headers.getFirst("password");
-        return db_checkUserExistance(login, password);
+        List<String> cookies = headers.get("Cookie");
+        String login = "", password = "";
+        for (String cookie : cookies) {
+            if (cookie.contains("login")) {
+                login = cookie.split(";")[0].split("=")[1];
+            }
+            if (cookie.contains("password")) {
+                password = cookie.split(";")[1].split("=")[1];
+            }
+        }
+        return dbCheckUserExistance(login, password);
     }
 
 

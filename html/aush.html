@@ -15,19 +15,22 @@
     <button id="go" type="button"> Войти </button>
     <script>
         const go = document.getElementById('go');
-        const login = document.getElementById('login');
-        const password = document.getElementById('pass');
         go.addEventListener('click', ()=>{
+            const login = document.getElementById('login').value;
+            const password = document.getElementById('pass').value;
             var request = new XMLHttpRequest();
-            request.open('GET', 'Http://Localhost:8765?command=Auth&login='+login.innerHTML+'&password='+password.innerHTML, true);
+            request.open('GET', '/html/activity.html', true);
+            document.cookie = 'login='+login;
+            document.cookie = 'password='+password;
             request.send();
-            request.onreadystatechange = function() {
+            request.onload = function() {
                 if (this.readyState != 4) return;
                 if (this.status != 200) {
                     alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
                     return;
                 } else {
-                    document = JSON.parse(this.responseText());
+                    alert('SOSI')
+                    window.open('/html/main.html')
                 }
             }
         })
