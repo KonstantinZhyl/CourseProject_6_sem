@@ -1,6 +1,7 @@
 package server;
 
 import com.sun.net.httpserver.*;
+import org.json.simple.parser.ParseException;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -25,7 +26,12 @@ public class SimpleHttpServer {
     static class EchoHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
-            API api = new API(exchange);
+            API api = null;
+            try {
+                api = new API(exchange);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             if (exchange.getRequestMethod().equals("GET"))  {
                 try {
                     api.processGetRequest();
@@ -38,7 +44,7 @@ public class SimpleHttpServer {
 
             if (exchange.getRequestMethod().equals("POST"))  {
                 try {
-                    api.processGetRequest();
+                    api.processPostRequest();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {

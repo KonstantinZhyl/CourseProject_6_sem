@@ -1,9 +1,14 @@
 package server;
 
 import Models.*;
+import com.mysql.cj.xdevapi.JsonArray;
+import com.mysql.cj.xdevapi.JsonValue;
+import org.json.simple.JSONObject;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class DatabaseHandler extends Configs {
     private static Connection dbConnection;
@@ -225,6 +230,27 @@ public class DatabaseHandler extends Configs {
             result[i].setCalories(rs.getInt("calories"));
             i++;
         }
+        return result;
+    }
+
+    public JSONObject dbGetAllProducts() throws IOException, SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs;
+        JSONObject result = new JSONObject();
+        JsonArray result_array = new JsonArray();
+        Map object;
+
+        rs = stmt.executeQuery("SELECT id, type, description, calories FROM " + DIET_TABLE);
+        while (rs.next()) {
+            object = new LinkedHashMap(4);
+            object.put("id", rs.getInt("id"));
+            object.put("id", rs.getString("type"));
+            object.put("id", rs.getString("description"));
+            object.put("id", rs.getInt("calories"));
+            result_array.add((JsonValue) object);
+        }
+        result.put("Products", result_array);
         return result;
     }
 
