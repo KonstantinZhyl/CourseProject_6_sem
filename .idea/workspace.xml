@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="fa60d0b7-ee6f-4d5f-8d8b-01a89bf3ab4b" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="fa60d0b7-ee6f-4d5f-8d8b-01a89bf3ab4b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CProject_6sem/server/API.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CProject_6sem/server/API.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CProject_6sem/server/DatabaseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CProject_6sem/server/DatabaseHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CProject_6sem/server/SimpleHttpServer$Auth.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CProject_6sem/server/SimpleHttpServer$Auth.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CProject_6sem/server/SimpleHttpServer$EchoHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CProject_6sem/server/SimpleHttpServer$EchoHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CProject_6sem/server/SimpleHttpServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CProject_6sem/server/SimpleHttpServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/API.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/DatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/DatabaseHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/SimpleHttpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/SimpleHttpServer.java" afterDir="false" />
+    </list>
+>>>>>>> master
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,26 +63,31 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="4" />
-          <entry key="java" value="17" />
+          <entry key="gitignore" value="2" />
+          <entry key="html" value="5" />
+          <entry key="java" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="4" />
-          <entry key="JAVA" value="17" />
+          <entry key="HTML" value="5" />
+          <entry key="JAVA" value="18" />
+          <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="gitignore" value="6" />
           <entry key="html" value="371" />
-          <entry key="java" value="1046" />
+          <entry key="java" value="2644" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="371" />
-          <entry key="JAVA" value="1046" />
+          <entry key="JAVA" value="2641" />
+          <entry key="PLAIN_TEXT" value="6" />
+          <entry key="SQL" value="3" />
         </counts>
       </usages-collector>
     </session>
@@ -88,7 +107,11 @@
         <entry file="file://$PROJECT_DIR$/src/Models/TrainingEntity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
+<<<<<<< HEAD
               <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
+=======
+              <caret line="31" column="31" lean-forward="true" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -97,7 +120,11 @@
         <entry file="file://$PROJECT_DIR$/src/Models/TrainingInfoEntity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
+<<<<<<< HEAD
               <caret line="2" selection-start-line="2" selection-end-line="2" />
+=======
+              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -114,8 +141,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/DatabaseHandler.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="324">
               <caret line="50" column="92" selection-start-line="50" selection-start-column="92" selection-end-line="50" selection-end-column="92" />
+=======
+            <state relative-caret-position="222">
+              <caret line="47" column="92" selection-start-line="47" selection-start-column="92" selection-end-line="48" selection-end-column="42" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -124,7 +156,11 @@
         <entry file="file://$PROJECT_DIR$/src/server/SimpleHttpServer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
+<<<<<<< HEAD
               <caret line="66" selection-start-line="66" selection-end-line="66" />
+=======
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
+>>>>>>> master
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -136,7 +172,11 @@
         <entry file="file://$PROJECT_DIR$/html/main.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="249">
+<<<<<<< HEAD
               <caret line="65" column="68" selection-start-line="65" selection-start-column="68" selection-end-line="65" selection-end-column="68" />
+=======
+              <caret line="59" column="68" lean-forward="true" selection-start-line="59" selection-start-column="68" selection-end-line="59" selection-end-column="68" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -153,8 +193,28 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server/API.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="-16">
               <caret line="65" column="9" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+=======
+            <state relative-caret-position="409">
+              <caret line="76" column="9" lean-forward="true" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
+              <folding>
+                <element signature="e#1575#1576#0" expanded="true" />
+                <element signature="e#1625#1626#0" expanded="true" />
+                <marker date="1557660164667" expanded="true" signature="1631:1935" ph="..." />
+                <marker date="1557660164667" expanded="true" signature="1636:1935" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="4" selection-start-column="4" selection-end-column="4" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -182,7 +242,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Configs.java" />
-        <option value="$PROJECT_DIR$/src/server/SimpleHttpServer.java" />
         <option value="$PROJECT_DIR$/src/server/Configs.java" />
         <option value="$PROJECT_DIR$/html/main.html" />
         <option value="$PROJECT_DIR$/html/aush.html" />
@@ -196,8 +255,10 @@
         <option value="$PROJECT_DIR$/src/Models/TrainingInfoEntity.java" />
         <option value="$PROJECT_DIR$/src/Models/UserEntity.java" />
         <option value="$PROJECT_DIR$/src/Models/IndicatorsEntity.java" />
-        <option value="$PROJECT_DIR$/src/server/API.java" />
         <option value="$PROJECT_DIR$/src/server/DatabaseHandler.java" />
+        <option value="$PROJECT_DIR$/src/server/SimpleHttpServer.java" />
+        <option value="$PROJECT_DIR$/src/server/API.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -229,6 +290,26 @@
               <item name="CourseProject_6_sem" type="b2602c69:ProjectViewProjectNode" />
               <item name="CourseProject_6_sem" type="462c0819:PsiDirectoryNode" />
               <item name="html" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
+=======
+            </path>
+            <path>
+              <item name="CourseProject_6_sem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CourseProject_6_sem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CourseProject_6_sem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CourseProject_6_sem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CourseProject_6_sem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CourseProject_6_sem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+>>>>>>> master
             </path>
           </expand>
           <select />
@@ -241,7 +322,11 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< HEAD
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557660877291" />
+=======
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557660393506" />
+>>>>>>> master
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -293,12 +378,12 @@
       <updated>1557311314547</updated>
       <workItem from="1557311319094" duration="10379000" />
       <workItem from="1557388033755" duration="17650000" />
-      <workItem from="1557584810087" duration="16055000" />
+      <workItem from="1557584810087" duration="23286000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44084000" />
+    <option name="totallyTimeSpent" value="51315000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -313,8 +398,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.36767897" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36737588" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -345,9 +430,15 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/server/API.java</url>
-          <line>19</line>
+          <line>26</line>
           <properties />
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/server/API.java</url>
+          <line>57</line>
+          <properties />
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -369,6 +460,7 @@
     <entry file="file://$PROJECT_DIR$/html/ingestion.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/html/main.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
@@ -386,6 +478,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> master
     <entry file="file://$PROJECT_DIR$/html/aush.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="106">
@@ -459,7 +553,10 @@
     <entry file="file://$PROJECT_DIR$/src/Models/IndicatorsEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="415">
+<<<<<<< HEAD
           <caret line="45" selection-start-line="45" selection-end-line="45" />
+=======
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
         </state>
       </provider>
     </entry>
@@ -470,17 +567,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/html/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="59" column="68" lean-forward="true" selection-start-line="59" selection-start-column="68" selection-end-line="59" selection-end-column="68" />
+>>>>>>> master
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/SimpleHttpServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/server/DatabaseHandler.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="324">
           <caret line="50" column="92" selection-start-line="50" selection-start-column="92" selection-end-line="50" selection-end-column="92" />
+=======
+        <state relative-caret-position="222">
+          <caret line="47" column="92" selection-start-line="47" selection-start-column="92" selection-end-line="48" selection-end-column="42" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/API.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-16">
           <caret line="65" column="9" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+=======
+        <state relative-caret-position="409">
+          <caret line="76" column="9" lean-forward="true" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
+          <folding>
+            <element signature="e#1575#1576#0" expanded="true" />
+            <element signature="e#1625#1626#0" expanded="true" />
+            <marker date="1557660164667" expanded="true" signature="1631:1935" ph="..." />
+            <marker date="1557660164667" expanded="true" signature="1636:1935" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="4" selection-start-column="4" selection-end-column="4" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
