@@ -65,13 +65,17 @@
             var request = new XMLHttpRequest();
             document.cookie = 'login='+login;
             document.cookie = 'password='+password;
-            request.open('POST', '/', true);
+            request.open('POST', '/html/mainAush.html', true);
             request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            request.setRequestHeader('command', 'registration');
             request.send(json);
             request.onreadystatechange = function(){
                 if (this.readyState != 4) return;
                 if (this.status != 200) {
                     alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
+                    return;
+                } else if (this.status == 500) {
+                    alert( 'ошибка: ' + (this.status ? this.getResponseHeader('message') : 'запрос не удался') );
                     return;
                 } else {
                     window.open('/html/mainAush.html');

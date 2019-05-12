@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/ingestion.css">
+    <link rel="stylesheet" type="text/css" href="../css/eating.css">
     <title>Приём пищи</title>
 </head>
 <body>
@@ -25,18 +26,82 @@
           </nav>      
     </header>
     <main>
-        <button id="add" type="button">add</button>
-        <div class="elem">
-            <input />
+        <center><button id="add" class="butt" type="button">add</button></center>
+        <div id="place">
+          <div class="elems">
+            <input class="elem" placeholder="Продукт"/>
+            <input class="elem" placeholder="кол-во/масса(г)"/>
+          </div>
         </div>
+        <center><button id="post" class="butt" type="button">Отослать</button></center>
     </main>
     <footer>
         <div class="container">
-            <div class="footer-col"><span>Ждём Вам фидбэк:D</span></div>
-            <div class="footer-col">
-              <a href="ZOJ@gmail.com">ZOJ@gmail.com</a>
-            </div>
+          <div class="footer-col"><span>Ждём Вам фидбэк:D</span></div>
+          <div class="footer-col">
+            <a href="ZOJ@gmail.com">ZOJ@gmail.com</a>
           </div>
+        </div>
     </footer>
+    <script type='text/javascript'>
+      function getAllProducts(){
+        var request = new XMLHttpRequest();
+        request.open('GET', 'Http://Localhost:8765', true);
+        request.setRequestHeader('command', 'getAllProducts');
+        request.send();
+        request.onload = function() {
+          if (this.status != 200) {
+            alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
+            return;
+          } else {
+            return JSON.parse(this.responseText);
+          }
+        }
+      }
+      const list = getAllProducts();
+      const add = document.getElementById('add');
+      const post = document.getElementById('post');
+      add.addEventListener('click', ()=> {
+        var area = document.createElement('div');
+        var input1 = document.createElement('input');
+        var input2 = document.createElement('input');
+        input1.classList.add('elem');
+        input2.classList.add('elem');
+        input1.setAttribute('placeholder', 'Продукт');
+        input2.setAttribute('placeholder', 'кол-во/масса(г)');
+        area.classList.add('elems')
+        area.appendChild(input1);
+        area.appendChild(input2);
+        document.getElementById('place').appendChild(area);
+      });
+      post.addEventListener('click', ()=> {
+        var arr = document.getElementsByClassName('elem'), json = Array(arr.length / 2);
+        for (var i=0, j=0; i<arr.length; i+=2, j++) {
+          json[j] = {
+            name: arr[i].value,
+            kol: arr[i+1].value,
+            id: list[arr[i].value]
+          }
+        }
+        json = JSON.stringify(json);
+        var request = new XMLHttpRequest();
+        request.open('POST', '/html/mainAush.html', true);
+        request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        request.setRequestHeader('command', 'addIngestion');
+        request.send(json);
+        request.onreadystatechange = function(){
+          if (this.readyState != 4) return;
+          if (this.status != 200) {
+              alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
+              return;
+          } else if (this.status == 500) {
+              alert( 'ошибка: ' + (this.status ? this.getResponseHeader('message') : 'запрос не удался') );
+              return;
+          } else {
+              window.open('/html/mainAush.html');
+          }
+        }
+      });
+    </script>
 </body>
 </html>

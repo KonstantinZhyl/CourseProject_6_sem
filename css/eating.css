@@ -1,0 +1,14 @@
+.elems {
+    position: relative;
+    text-align: center;
+}
+
+.elem {
+    margin: 10px 10px 10px 10px;
+}
+
+#add, #post {
+    height: 25px;
+    width: 100px;
+    margin: 20px 0 20px 0;
+}
