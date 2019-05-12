@@ -51,16 +51,21 @@ public class API extends DatabaseHandler {
     }
 
     String getCommand(Headers headers) {
-        return headers.getFirst("command");
+        String command = headers.getFirst("command");
+        if (command == null) {
+            command = "";
+        }
+        return command;
     }
 
     void processGetRequest(HttpExchange exchange) throws IOException, SQLException, ClassNotFoundException {
-        if (this.command != null) {
-            switch (this.command) {
-                case "registration":
-                    registrate();
-                    break;
-            }
+        switch (this.command) {
+            case "registration":
+                registrate();
+                break;
+            default:
+                sendResponse(200);
+
         }
     }
 

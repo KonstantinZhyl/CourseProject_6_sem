@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.sql.SQLException;
 
 
 public class SimpleHttpServer {
@@ -26,7 +27,13 @@ public class SimpleHttpServer {
         public void handle(HttpExchange exchange) throws IOException {
             API api = new API(exchange);
             if (exchange.getRequestMethod().equals("GET"))  {
-                api.processGetRequest(exchange);
+                try {
+                    api.processGetRequest(exchange);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
 
             if (exchange.getRequestMethod().equals("POST"))  {
