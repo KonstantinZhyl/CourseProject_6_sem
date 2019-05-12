@@ -1,9 +1,6 @@
 package server;
 
-import Models.DietEntity;
-import Models.ExerciseInfoEntity;
-import Models.TrainingInfoEntity;
-import Models.UserEntity;
+import Models.*;
 
 import java.io.IOException;
 import java.sql.*;
@@ -277,51 +274,55 @@ public class DatabaseHandler extends Configs {
         return result;
     }
 
-    public ExerciseInfoEntity[] dbGetAllExersises(int user_id, int exersice_id) throws IOException, SQLException, ClassNotFoundException {
+    public ExerciseEntity[] dbGetAllExersises(int user_id, int exercise_id) throws IOException, SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         Statement stmt = connection.createStatement();
         int count = 0;
-        ResultSet rs = stmt.executeQuery("select count(*) from " + EXERCISE_INFO_TABLE + "WHERE ");
+        ResultSet rs = stmt.executeQuery("select count(*) from " + EXERCISE_TABLE + " as a inner join " +
+                TRAINING_TABLE + " as b on a.training_id = b.id inner join " + ACTIVITY_TABLE + " as c " +
+                "on c.training_id = b.id WHERE c.user_id = " + Integer.toString(user_id) + " and " +
+                "a.exercise_id = " + Integer.toString(exercise_id));
          while (rs.next()) {
             count =  rs.getInt(1);
         }
 
-        rs = stmt.executeQuery("SELECT id, name, count, calories_for_one  FROM " + EXERCISE_INFO_TABLE);
+        rs = stmt.executeQuery("select a.id, a.count from " + EXERCISE_TABLE + " as a inner join " +
+                TRAINING_TABLE + " as b on a.training_id = b.id inner join " + ACTIVITY_TABLE + " as c " +
+                "on c.training_id = b.id WHERE c.user_id = " + Integer.toString(user_id) + " and " +
+                "a.exercise_id = " + Integer.toString(exercise_id));
         int i = 0;
-        ExerciseInfoEntity[] result = new ExerciseInfoEntity[count];
+        ExerciseEntity[] result = new ExerciseEntity[count];
         while (rs.next()) {
-            result[i] = new ExerciseInfoEntity();
+            result[i] = new ExerciseEntity();
             result[i].setId(rs.getInt("id"));
-            result[i].setName(rs.getString("name"));
             result[i].setCount(rs.getInt("count"));
-            result[i].setCaloriesForOne(rs.getInt("calories_for_one"));
             i++;
         }
         return result;
     }
 
-    public TrainingInfoEntity[] dbGetAllTrainings() throws IOException, SQLException, ClassNotFoundException {
-        Connection connection = getDbConnection();
-        Statement stmt = connection.createStatement();
-        int count = 0;
-        ResultSet rs = stmt.executeQuery("select count(*) from " + TRAINING_INFO_TABLE);
-        while (rs.next()) {
-            count =  rs.getInt(1);
-        }
-
-        rs = stmt.executeQuery("SELECT id, description, type, intensity FROM " + TRAINING_INFO_TABLE);
-        int i = 0;
-        TrainingInfoEntity[] result = new TrainingInfoEntity[count];
-        while (rs.next()) {
-            result[i] = new TrainingInfoEntity();
-            result[i].setId(rs.getInt("id"));
-            result[i].setDescription(rs.getString("description"));
-            result[i].setType(rs.getString("type"));
-            result[i].setIntensity(rs.getInt("intensity"));
-            i++;
-        }
-        return result;
-    }
+//    public TrainingInfoEntity[] dbGetAllTrainings() throws IOException, SQLException, ClassNotFoundException {
+//        Connection connection = getDbConnection();
+//        Statement stmt = connection.createStatement();
+//        int count = 0;
+//        ResultSet rs = stmt.executeQuery("select count(*) from " + TRAINING_INFO_TABLE);
+//        while (rs.next()) {
+//            count =  rs.getInt(1);
+//        }
+//
+//        rs = stmt.executeQuery("SELECT id, description, type, intensity FROM " + TRAINING_INFO_TABLE);
+//        int i = 0;
+//        TrainingInfoEntity[] result = new TrainingInfoEntity[count];
+//        while (rs.next()) {
+//            result[i] = new TrainingInfoEntity();
+//            result[i].setId(rs.getInt("id"));
+//            result[i].setDescription(rs.getString("description"));
+//            result[i].setType(rs.getString("type"));
+//            result[i].setIntensity(rs.getInt("intensity"));
+//            i++;
+//        }
+//        return result;
+//    }
 
 
 //
