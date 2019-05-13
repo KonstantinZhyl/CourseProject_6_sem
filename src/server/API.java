@@ -1,6 +1,5 @@
 package server;
 
-import Models.ProductEntity;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 
@@ -8,10 +7,10 @@ import java.io.*;
 import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+
+import org.json.simple.DeserializationException;
+import org.json.simple.JsonObject;
+import org.json.simple.Jsoner;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -21,7 +20,7 @@ public class API extends DatabaseHandler {
     private Headers headers;
     private String url;
     private String command;
-    private JSONObject body;
+    private JsonObject body;
 
     String getUrl(String uri) {
         if(uri.equals("/")) {
@@ -43,7 +42,7 @@ public class API extends DatabaseHandler {
         return command;
     }
 
-    public API(HttpExchange exchange) throws IOException, ParseException {
+    public API(HttpExchange exchange) throws IOException, ParseException, DeserializationException {
         this.exchange = exchange;
         this.headers = exchange.getRequestHeaders();
         this.url = getUrl(exchange.getRequestURI().toString());
@@ -59,8 +58,11 @@ public class API extends DatabaseHandler {
         br.close();
         isr.close();
 
-        Object obj = new JSONParser().parse(body.toString());
-        this.body = (JSONObject) obj;
+        if (body.equals("")) {
+            this.body = (JsonObject) Jsoner.deserialize(body.toString());
+        } else {
+            this.body = null;
+        }
     }
 
     static boolean checkUserExistance(HttpExchange httpExchange) throws SQLException, ClassNotFoundException {
@@ -79,23 +81,23 @@ public class API extends DatabaseHandler {
     }
 
     void sendResponse(int status, String body) throws IOException {
-        String response = body;
+        byte[] response;
         if (body == null) {
             File page = new File(this.url);
-            response = Files.readAllBytes(page.toPath()).toString();
+            response = Files.readAllBytes(page.toPath());
+        }
+        else {
+            response = body.getBytes();
         }
 
-        this.exchange.sendResponseHeaders(status, response.length());
+        this.exchange.sendResponseHeaders(status, response.length);
         OutputStream os = this.exchange.getResponseBody();
-        os.write(response.getBytes());
+        os.write(response);
         os.close();
     }
 
     void processGetRequest() throws IOException, SQLException, ClassNotFoundException {
         switch (this.command) {
-            case "registration":
-                registrate();
-                break;
             case "getAllProducts":
                 getAllProducts();
                 break;
@@ -110,6 +112,12 @@ public class API extends DatabaseHandler {
             case "registration":
                 registrate();
                 break;
+            case "addProduct":
+                addProduct();
+                break;
+            case "getUserDiet":
+                getUserDiet();
+                break;
             default:
                 sendResponse(200, null);
         }
@@ -117,14 +125,9 @@ public class API extends DatabaseHandler {
 
     private void registrate() throws SQLException, ClassNotFoundException, IOException {
         String login = (String) this.body.get("login");
-        String password = (String) this.body.get("password");
 
         if (!dbCheckLoginExists(login)) {
-            String name = (String) this.body.get("name");
-            String surname = (String) this.body.get("surname");
-            String birthdate = (String) this.body.get("date");
-            String email = (String) this.body.get("mail");
-            dbInsertUser(login, password, name, surname, birthdate, email, "user");
+            dbInsertUser(this.body);
             sendResponse(200, null);
         }
         else {
@@ -134,7 +137,17 @@ public class API extends DatabaseHandler {
     }
 
     private void getAllProducts() throws SQLException, ClassNotFoundException, IOException {
-        JSONObject products = dbGetAllProducts();
-        sendResponse(500, products.toString());
+        JsonObject products = dbGetAllProducts();
+        sendResponse(200, products.toString());
+    }
+
+    private void addProduct() throws SQLException, ClassNotFoundException, IOException {
+
+    }
+
+    private void getUserDiet() throws SQLException, ClassNotFoundException, IOException {
+//        String login = headers.getFirst("login");
+//        int user_id = getUserIdByLogin(login);
+//        GetUser
     }
 }
