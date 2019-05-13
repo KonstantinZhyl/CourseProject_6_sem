@@ -78,11 +78,11 @@
         var arr = document.getElementsByClassName('elem'), json = Array(arr.length / 2);
         for (var i=0, j=0; i<arr.length; i+=2, j++) {
           for (var k=0; k<list.length; k++) {
-            if (arr[i] == list[j].name) 
+            if (arr[i] == list[k].name) 
             json[j] = {
               name: arr[i].value,
               kol: arr[i+1].value,
-              id: list[j].id
+              id: list[k].id
             }
           }
         }
