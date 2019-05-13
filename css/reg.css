@@ -13,10 +13,10 @@ form:last-child {
     margin-bottom: 20px;
 }
 
-#reg {
+#reg, #update {
     margin-left: 0%;
     margin-top: 20px;
-    margin-bottom: 8em;
+    margin-bottom: 2em;
     height: 45px;
     width: 200px;
     font-size: 18px;

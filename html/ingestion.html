@@ -30,7 +30,8 @@
             
         </div>
         <div class="info">
-            <h2>Текущая диета : <span id='diet'>default</span></h2> 
+            <h2>Текущая диета : <span id='diet'>default</span><span id='kKal'>(0 kKal)</span></h2> 
+            <p id="description">Самая Лучшая диетаСамая Лучшая диетаСамая Лучшая диетаСамая Лучшая диетаСамая Лучшая диетаСамая Лучшая диетаСамая Лучшая диетаСамая Лучшая диетаСамая Лучшая диетаСамая Лучшая диетаСамая Лучшая диета</p>
             <button id="change_diet" class="butt" type="button">Сменить диету</button>
             <br/>
             <a href="/html/eating.html"><button id="add_ingestion" class="button_diet2" type="button">Добавить приём пищи</button></a>
@@ -43,7 +44,6 @@
             </div>
         </div>
     </main>
-    
     <footer>
         <div class="container">
             <div class="footer-col"><span>Ждём Вам фидбэк:D</span></div>
@@ -52,5 +52,35 @@
             </div>
           </div>
     </footer>
+    <script type='text/javascript'>
+      function getCookie(name) {
+          var matches = document.cookie.match(new RegExp(
+              "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+          ));
+          return matches ? decodeURIComponent(matches[1]) : undefined;
+      }
+      function getDiet() {
+        const diet = document.getElementById('diet');
+        const description = document.getElementById('description');
+        const kKal = document.getElementById('kKal');
+        var request = new XMLHttpRequest();
+        request.open('GET', 'Http://Localhost:8765', true);
+        request.setRequestHeader('command', 'getUserDiet');
+        request.setRequestHeader('login'. getCookie(login));
+        request.setRequestHeader('password'. getCookie(password));
+        request.send();
+        request.onload = function() {
+            if (this.status != 200) {
+                alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
+                return;
+            } else {
+              var json = JSON.parse(this.responseText);
+              diet.innerHTML = json.type;
+              description.innerHTML = json.description;
+              kKal.innerHTML = '(' + json.calories + ' kKal)';
+            }
+        }
+      }
+     </script>
 </body>
 </html>

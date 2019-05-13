@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/ingestion.css">
+    <link rel="stylesheet" type="text/css" href="../css/reg.css">
     <title>Редактирование</title>
 </head>
 <body>
@@ -15,8 +17,6 @@
                 <span>O</span>
                 <span>Ж</span>
             </a>
-            <a href="/html/aush.html"><button id="auth" type="button">Войти</button></a>
-            <a href="/html/reg.html"><button id="reg" type="button">Зарегистрироваться</button></a>
             <ul id="menu">
                 <li><a href="/html/main.html">Главная</a></li>
                 <li><a href="/html/aboutUs.html">О нас</a></li>
@@ -26,7 +26,16 @@
         </nav>        
     </header>
     <main>
-        
+        <h3>Редактирование</h3>
+        <form name="person">
+            <center><input id="name" name="name" class="data" placeholder="Имя"/></center>
+            <center><input id="surname" name="surname" class="data" placeholder="Фамилия"/></center>
+            <center><input id="login" name="login" class="data" placeholder="Логин"/></center>
+            <center><input id="password" name="password" class="data" placeholder="Пароль"/></center>
+            <center><input id="mail" name="mail" class="data" placeholder="default@gmail.com"/></center>
+            <center><input id="date" name="date" class="data"  type="date"/></center>
+        </form>
+        <center><button id="update" class="butt"type="button">Обновить данные</button></center>
     </main>
     <footer>
         <div class="container">
@@ -36,5 +45,53 @@
             </div>
         </div>
     </footer>
+    <script type='text/javascript'>
+        function getCookie(name) {
+            var matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+        const update = document.getElementById('update');
+        const login = getCookie('login');
+        document.getElementById('login').value = login;
+        const password = getCookie('password');
+        document.getElementById('password').value = password;
+        update.addEventListener('click', ()=>{
+            const name = document.getElementById('name').value;
+            const surname = document.getElementById('surname').value;
+            const login = document.getElementById('login').value;
+            const newpassword = document.getElementById('newpassword').value;
+            const mail = document.getElementById('mail').value;
+            const date = document.getElementById('date').value;
+            var json = JSON.stringify({
+                name: name,
+                surname: surname,
+                login: login,
+                password: password,
+                mail: mail,
+                date: date,
+            });
+            var request = new XMLHttpRequest();
+            document.cookie = 'login='+login;
+            document.cookie = 'password='+password;
+            request.open('POST', '/html/mainAush.html', true);
+            request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            request.setRequestHeader('command', 'editing');
+            request.send(json);
+            request.onreadystatechange = function() {
+                if (this.readyState != 4) return;
+                if (this.status != 200) {
+                    alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
+                    return;
+                } else if (this.status == 500) {
+                    alert( 'ошибка: ' + (this.status ? this.getResponseHeader('message') : 'запрос не удался') );
+                    return;
+                } else {
+                    window.open('/html/mainAush.html');
+                }
+            }
+        })
+    </script>
 </body>
 </html>

@@ -82,3 +82,16 @@ main h2 {
     width: 160px;
     height: 20px;
 }
+
+#kKal {
+    margin-left: 15px;
+    font-size: 26px;
+}
+
+#description {
+    margin-bottom: 20px;
+    margin-left: 20px;
+    font-size: 20px;
+    color: aliceblue;
+
+}
