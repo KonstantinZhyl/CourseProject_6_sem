@@ -1,6 +1,7 @@
 package server;
 
 import com.sun.net.httpserver.*;
+import org.json.simple.DeserializationException;
 import org.json.simple.parser.ParseException;
 
 import java.io.File;
@@ -30,6 +31,8 @@ public class SimpleHttpServer {
             try {
                 api = new API(exchange);
             } catch (ParseException e) {
+                e.printStackTrace();
+            } catch (DeserializationException e) {
                 e.printStackTrace();
             }
             if (exchange.getRequestMethod().equals("GET"))  {

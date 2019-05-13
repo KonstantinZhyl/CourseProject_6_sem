@@ -1,9 +1,8 @@
 package server;
 
 import Models.*;
-import com.mysql.cj.xdevapi.JsonArray;
-import com.mysql.cj.xdevapi.JsonValue;
-import org.json.simple.JSONObject;
+import org.json.simple.JsonObject;
+import org.json.simple.JsonArray;
 
 import java.io.IOException;
 import java.sql.*;
@@ -50,98 +49,115 @@ public class DatabaseHandler extends Configs {
         return false;
     }
 
-    public boolean dbInsertUser(String login, String password, String name, String surname, String birthdate,
-                              String email, String role) throws SQLException, ClassNotFoundException {
+    public boolean dbInsertUser(JsonObject object) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + USER_TABLE + "(login, password, name, surname, email, role, birthdate)" +
                 " VALUES(?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement prSt = connection.prepareStatement(insert);
-        prSt.setString(1, login);
-        prSt.setString(2, password);
-        prSt.setString(3, name);
-        prSt.setString(4, surname);
-        prSt.setString(5, email);
-        prSt.setString(6, role);
-        prSt.setDate(7, Date.valueOf(birthdate));
+        prSt.setString(1, object.getString("login"));
+        prSt.setString(2, object.getString("password"));
+        prSt.setString(3, object.getString("name"));
+        prSt.setString(4, object.getString("surname"));
+        prSt.setString(5, object.getString("email"));
+        prSt.setString(6, object.getString("role"));
+        prSt.setDate(7, Date.valueOf(object.getString("birthdate")));
         prSt.executeUpdate();
         return true;
     }
 
-    public boolean dbInsertIndicator(int weight, int height, int pulse,
-                              String last_updated, int user_id) throws SQLException, ClassNotFoundException {
+//    public boolean dbGetUser(int user_id) throws SQLException, ClassNotFoundException {
+//        Connection connection = getDbConnection();
+//        Statement stmt = connection.createStatement();
+//        ResultSet rs;
+//        JsonObject result = new JsonObject();
+//        JsonArray result_array = new JsonArray();
+//        Map object;
+//
+//        rs = stmt.executeQuery("SELECT id, name, surname, login, password, role, email, birthdate, diet_id FROM " + USER_TABLE);
+//        while (rs.next()) {
+//            object = new LinkedHashMap(4);
+//            object.put("id", rs.getInt("id"));
+//            object.put("type", rs.getString("type"));
+//            object.put("description", rs.getString("description"));
+//            object.put("calories", rs.getInt("calories"));
+//            result_array.add(object);
+//        }
+//        return result;
+//    }
+
+    public boolean dbInsertIndicator(JsonObject object) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + INDICATORS_TABLE + "(weight, height, pulse, last_updated, user_id)" +
                 " VALUES(?, ?, ?, ?, ?)";
         PreparedStatement prSt = connection.prepareStatement(insert);
-        prSt.setInt(1, weight);
-        prSt.setInt(2, height);
-        prSt.setInt(2, pulse);
-        prSt.setDate(4, Date.valueOf(last_updated));
-        prSt.setInt(5, user_id);
+        prSt.setInt(1, object.getInteger("weight"));
+        prSt.setInt(2, object.getInteger("height"));
+        prSt.setInt(3, object.getInteger("pulse"));
+        prSt.setDate(4, Date.valueOf(object.getString("last_updated")));
+        prSt.setInt(5, object.getInteger("user_id"));
         prSt.executeUpdate();
         return true;
     }
 
-    public boolean dbInsertActivity(int user_id, int steps, int training_calories, int sleep,
-                                  int activity_calories, int training_id) throws SQLException, ClassNotFoundException {
+    public boolean dbInsertActivity(JsonObject object) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + ACTIVITY_TABLE + "(user_id, steps, training_calories, sleep, activity_calories, training_id)" +
                 " VALUES(?, ?, ?, ?, ?, ?)";
         PreparedStatement prSt = connection.prepareStatement(insert);
-        prSt.setInt(1, user_id);
-        prSt.setInt(2, steps);
-        prSt.setInt(2, training_calories);
-        prSt.setInt(4, sleep);
-        prSt.setInt(5, activity_calories);
-        prSt.setInt(6, training_id);
+        prSt.setInt(1, object.getInteger("user_id"));
+        prSt.setInt(2, object.getInteger("steps"));
+        prSt.setInt(2, object.getInteger("training_calories"));
+        prSt.setInt(4, object.getInteger("sleep"));
+        prSt.setInt(5, object.getInteger("activity_calories"));
+        prSt.setInt(6, object.getInteger("training_id"));
         prSt.executeUpdate();
         return true;
     }
 
-    public boolean dbInsertExercise(int exercise_id, int training_id, int count) throws SQLException, ClassNotFoundException {
+    public boolean dbInsertExercise(JsonObject object) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + EXERCISE_TABLE + "(exercise_id, training_id, count)" +
                 " VALUES(?, ?, ?)";
         PreparedStatement prSt = connection.prepareStatement(insert);
-        prSt.setInt(1, exercise_id);
-        prSt.setInt(2, training_id);
-        prSt.setInt(3, count);
+        prSt.setInt(1, object.getInteger("exercise_id"));
+        prSt.setInt(2, object.getInteger("training_id"));
+        prSt.setInt(3, object.getInteger("count"));
         prSt.executeUpdate();
         return true;
     }
 
-    public boolean dbInsertExerciseInfo(String name, int count, int calories_for_one) throws SQLException, ClassNotFoundException {
+    public boolean dbInsertExerciseInfo(JsonObject object) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + EXERCISE_INFO_TABLE + "(name, count, calories_for_one)" +
                 " VALUES(?, ?, ?)";
         PreparedStatement prSt = connection.prepareStatement(insert);
-        prSt.setString(1, name);
-        prSt.setInt(2, count);
-        prSt.setInt(3, calories_for_one);
+        prSt.setString(1, object.getString("name"));
+        prSt.setInt(2, object.getInteger("count"));
+        prSt.setInt(3, object.getInteger("calories_for_one"));
         prSt.executeUpdate();
         return true;
     }
 
-    public boolean dbInsertTraining(int training_id, int duration, int calories) throws SQLException, ClassNotFoundException {
+    public boolean dbInsertTraining(JsonObject object) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + TRAINING_TABLE + "(training_id, duration, calories)" +
                 " VALUES(?, ?, ?)";
         PreparedStatement prSt = connection.prepareStatement(insert);
-        prSt.setInt(1, training_id);
-        prSt.setInt(2, duration);
-        prSt.setInt(3, calories);
+        prSt.setInt(1, object.getInteger("training_id"));
+        prSt.setInt(2, object.getInteger("duration"));
+        prSt.setInt(3, object.getInteger("calories"));
         prSt.executeUpdate();
         return true;
     }
 
-    public boolean dbInsertTrainingInfo(String description, String type, int intensity) throws SQLException, ClassNotFoundException {
+    public boolean dbInsertTrainingInfo(JsonObject object) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + TRAINING_INFO_TABLE + "(description, type, intensity)" +
                 " VALUES(?, ?, ?)";
         PreparedStatement prSt = connection.prepareStatement(insert);
-        prSt.setString(1, description);
-        prSt.setString(2, type);
-        prSt.setInt(3, intensity);
+        prSt.setString(1, object.getString("description"));
+        prSt.setString(2, object.getString("type"));
+        prSt.setInt(3, object.getInteger("intensity"));
         prSt.executeUpdate();
         return true;
     }
@@ -210,34 +226,31 @@ public class DatabaseHandler extends Configs {
         return result;
     }
 
-    public DietEntity[] dbGetAllDiet() throws IOException, SQLException, ClassNotFoundException {
+    public JsonObject dbGetAllDiet() throws IOException, SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         Statement stmt = connection.createStatement();
-        int count = 0;
-        ResultSet rs = stmt.executeQuery("select count(*) from " + DIET_TABLE);
-        while (rs.next()) {
-            count =  rs.getInt(1);
-        }
+        ResultSet rs;
+        JsonObject result = new JsonObject();
+        JsonArray result_array = new JsonArray();
+        Map object;
 
         rs = stmt.executeQuery("SELECT id, type, description, calories FROM " + DIET_TABLE);
-        int i = 0;
-        DietEntity[] result = new DietEntity[count];
         while (rs.next()) {
-            result[i] = new DietEntity();
-            result[i].setId(rs.getInt("id"));
-            result[i].setType(rs.getString("type"));
-            result[i].setDescription(rs.getString("description"));
-            result[i].setCalories(rs.getInt("calories"));
-            i++;
+            object = new LinkedHashMap(4);
+            object.put("id", rs.getInt("id"));
+            object.put("type", rs.getString("type"));
+            object.put("description", rs.getString("description"));
+            object.put("calories", rs.getInt("calories"));
+            result_array.add(object);
         }
         return result;
     }
 
-    public JSONObject dbGetAllProducts() throws IOException, SQLException, ClassNotFoundException {
+    public JsonObject dbGetAllProducts() throws IOException, SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         Statement stmt = connection.createStatement();
         ResultSet rs;
-        JSONObject result = new JSONObject();
+        JsonObject result = new JsonObject();
         JsonArray result_array = new JsonArray();
         Map object;
 
@@ -250,268 +263,74 @@ public class DatabaseHandler extends Configs {
             object.put("protein", rs.getInt("protein"));
             object.put("fat", rs.getInt("fat"));
             object.put("carbons", rs.getInt("carbons"));
-            result_array.add((JsonValue) object);
+            result_array.add(object);
         }
         result.put("Products", result_array);
         return result;
     }
 
-    public ExerciseInfoEntity[] dbGetAllExersises() throws IOException, SQLException, ClassNotFoundException {
+    public JsonObject dbGetAllExersises() throws IOException, SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         Statement stmt = connection.createStatement();
-        int count = 0;
-        ResultSet rs = stmt.executeQuery("select count(*) from " + EXERCISE_INFO_TABLE);
-        while (rs.next()) {
-            count =  rs.getInt(1);
-        }
+        ResultSet rs;
+        JsonObject result = new JsonObject();
+        JsonArray result_array = new JsonArray();
+        Map object;
 
         rs = stmt.executeQuery("SELECT id, name, count, calories_for_one  FROM " + EXERCISE_INFO_TABLE);
-        int i = 0;
-        ExerciseInfoEntity[] result = new ExerciseInfoEntity[count];
         while (rs.next()) {
-            result[i] = new ExerciseInfoEntity();
-            result[i].setId(rs.getInt("id"));
-            result[i].setName(rs.getString("name"));
-            result[i].setCount(rs.getInt("count"));
-            result[i].setCaloriesForOne(rs.getInt("calories_for_one"));
-            i++;
+            object = new LinkedHashMap(4);
+            object.put("id", rs.getInt("id"));
+            object.put("name", rs.getString("name"));
+            object.put("", rs.getInt("count"));
+            object.put("id", rs.getInt("calories_for_one"));
+            result_array.add(object);
         }
+        result.put("Exercises", result_array);
         return result;
     }
 
-    public TrainingInfoEntity[] dbGetAllTrainings() throws IOException, SQLException, ClassNotFoundException {
+    public JsonObject dbGetAllTrainings() throws IOException, SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         Statement stmt = connection.createStatement();
-        int count = 0;
-        ResultSet rs = stmt.executeQuery("select count(*) from " + TRAINING_INFO_TABLE);
-        while (rs.next()) {
-            count =  rs.getInt(1);
-        }
+        ResultSet rs;
+        JsonObject result = new JsonObject();
+        JsonArray result_array = new JsonArray();
+        Map object;
 
         rs = stmt.executeQuery("SELECT id, description, type, intensity FROM " + TRAINING_INFO_TABLE);
-        int i = 0;
-        TrainingInfoEntity[] result = new TrainingInfoEntity[count];
         while (rs.next()) {
-            result[i] = new TrainingInfoEntity();
-            result[i].setId(rs.getInt("id"));
-            result[i].setDescription(rs.getString("description"));
-            result[i].setType(rs.getString("type"));
-            result[i].setIntensity(rs.getInt("intensity"));
-            i++;
+            object = new LinkedHashMap(4);
+            object.put("id", rs.getInt("id"));
+            object.put("description", rs.getString("description"));
+            object.put("type", rs.getString("type"));
+            object.put("intensity", rs.getInt("intensity"));
+            result_array.add(object);
         }
+        result.put("Trainings", result_array);
         return result;
     }
 
-    public ExerciseEntity[] dbGetAllExersises(int user_id, int exercise_id) throws IOException, SQLException, ClassNotFoundException {
+    public JsonObject dbGetAllExersises(int user_id, int exercise_id) throws IOException, SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         Statement stmt = connection.createStatement();
-        int count = 0;
-        ResultSet rs = stmt.executeQuery("select count(*) from " + EXERCISE_TABLE + " as a inner join " +
-                TRAINING_TABLE + " as b on a.training_id = b.id inner join " + ACTIVITY_TABLE + " as c " +
-                "on c.training_id = b.id WHERE c.user_id = " + Integer.toString(user_id) + " and " +
-                "a.exercise_id = " + Integer.toString(exercise_id));
-         while (rs.next()) {
-            count =  rs.getInt(1);
-        }
+        ResultSet rs;
+        JsonObject result = new JsonObject();
+        JsonArray result_array = new JsonArray();
+        Map object;
 
         rs = stmt.executeQuery("select a.id, a.count from " + EXERCISE_TABLE + " as a inner join " +
                 TRAINING_TABLE + " as b on a.training_id = b.id inner join " + ACTIVITY_TABLE + " as c " +
                 "on c.training_id = b.id WHERE c.user_id = " + Integer.toString(user_id) + " and " +
                 "a.exercise_id = " + Integer.toString(exercise_id));
-        int i = 0;
-        ExerciseEntity[] result = new ExerciseEntity[count];
+
         while (rs.next()) {
-            result[i] = new ExerciseEntity();
-            result[i].setId(rs.getInt("id"));
-            result[i].setCount(rs.getInt("count"));
-            i++;
+            object = new LinkedHashMap(2);
+            object.put("id", rs.getInt("id"));
+            object.put("count", rs.getInt("count"));
+            result_array.add(object);
         }
+        result.put("Exercises", result_array);
         return result;
     }
-
-//    public TrainingInfoEntity[] dbGetAllTrainings() throws IOException, SQLException, ClassNotFoundException {
-//        Connection connection = getDbConnection();
-//        Statement stmt = connection.createStatement();
-//        int count = 0;
-//        ResultSet rs = stmt.executeQuery("select count(*) from " + TRAINING_INFO_TABLE);
-//        while (rs.next()) {
-//            count =  rs.getInt(1);
-//        }
-//
-//        rs = stmt.executeQuery("SELECT id, description, type, intensity FROM " + TRAINING_INFO_TABLE);
-//        int i = 0;
-//        TrainingInfoEntity[] result = new TrainingInfoEntity[count];
-//        while (rs.next()) {
-//            result[i] = new TrainingInfoEntity();
-//            result[i].setId(rs.getInt("id"));
-//            result[i].setDescription(rs.getString("description"));
-//            result[i].setType(rs.getString("type"));
-//            result[i].setIntensity(rs.getInt("intensity"));
-//            i++;
-//        }
-//        return result;
-//    }
-
-
-//
-//    public synchronized boolean insertPhone(String name, String brand, double screen, int camera, String processor,
-//                               String description, String picName) throws SQLException, ClassNotFoundException {
-//        Connection connection = getDbConnection();
-//        String insert = "INSERT INTO " + PHONE_TABLE + "(name, brand, screen, camera, processor, description, picName)" +
-//                " VALUES(?, ?, ?, ?, ?, ?, ?)";
-//        PreparedStatement prSt = connection.prepareStatement(insert);
-//        prSt.setString(1, name);
-//        prSt.setString(2, brand);
-//        prSt.setDouble(3, screen);
-//        prSt.setInt(4, camera);
-//        prSt.setString(5, processor);
-//        prSt.setString(6, description);
-//        prSt.setString(7, picName);
-//        prSt.executeUpdate();
-//        return true;
-//    }
-//
-//    public boolean updatePhone(int id, String name, String brand, int screen, int camera, String processor,
-//                               String description, String picName) throws SQLException, ClassNotFoundException {
-//        Connection connection = getDbConnection();
-//        String insert = "UPDATE " + PHONE_TABLE + " SET (name, brand, screen, camera, processor, description, picName)" +
-//                " VALUES(?, ?, ?, ?, ?, ?, ?) WHERE idModel = ?";
-//        PreparedStatement prSt = connection.prepareStatement(insert);
-//        prSt.setString(1, name);
-//        prSt.setString(2, brand);
-//        prSt.setDouble(3, screen);
-//        prSt.setInt(4, camera);
-//        prSt.setString(5, processor);
-//        prSt.setString(6, description);
-//        prSt.setString(7, picName);
-//        prSt.setInt(8, id);
-//        prSt.executeUpdate();
-//        return true;
-//    }
-//
-//    public PhoneMessage getNextPhone(int id) throws IOException, SQLException, ClassNotFoundException {
-//        Connection connection = getDbConnection();
-//        PhoneMessage answer = new PhoneMessage();
-//        Statement stmt = connection.createStatement();
-//        ResultSet rs = stmt.executeQuery("SELECT idModel, name, brand, screen, camera, processor, " +
-//                "description, picName FROM " + PHONE_TABLE + " WHERE idModel > " + id);
-//        while (rs.next()) {
-//            answer.setId(rs.getInt("idModel"));
-//            answer.setName(rs.getString("name"));
-//            answer.setBrand(rs.getString("brand"));
-//            answer.setScreen(rs.getDouble("screen"));
-//            answer.setProcessor(rs.getString("processor"));
-//            answer.setCamera(rs.getInt("camera"));
-//            answer.setDescription(rs.getString("description"));
-//            answer.setPicName(rs.getString("picName"));
-//            return answer;
-//        }
-//        return null;
-//    }
-//
-//    public boolean delPhone(int id) throws IOException, SQLException, ClassNotFoundException {
-//        Connection connection = getDbConnection();
-//        String insert = "DELETE FROM " + PHONE_TABLE + " WHERE idModel = ?";
-//        PreparedStatement prSt = connection.prepareStatement(insert);
-//        prSt.setInt(1, id);
-//        prSt.executeUpdate();
-//        return true;
-//    }
-//
-//    public BrandMessage[] getAllBrands() throws IOException, SQLException, ClassNotFoundException {
-//        Connection connection = getDbConnection();
-//        Statement stmt = connection.createStatement();
-//        count = 0;
-//        ResultSet rs = stmt.executeQuery("select count(*) from " + BRAND_TABLE);
-//        while (rs.next()) {
-//            count =  rs.getInt(1);
-//        }
-//
-//        rs = stmt.executeQuery("SELECT name, coefficient FROM " + BRAND_TABLE);
-//        int i = 0;
-//        BrandMessage[] result = new BrandMessage[count];
-//        while (rs.next()) {
-//            result[i] = new BrandMessage(rs.getString("name"), rs.getDouble("coefficient"));
-//            i++;
-//        }
-//        return result;
-//    }
-//
-//    public ProcessorMessage[] getAllProcessors() throws IOException, SQLException, ClassNotFoundException {
-//        Connection connection = getDbConnection();
-//        Statement stmt = connection.createStatement();
-//        count = 0;
-//        ResultSet rs = stmt.executeQuery("select count(*) from " + PROCESSOR_TABLE);
-//        while (rs.next()) {
-//            count =  rs.getInt(1);
-//        }
-//
-//        rs = stmt.executeQuery("SELECT name, coefficient FROM " + PROCESSOR_TABLE);
-//        int i = 0;
-//        ProcessorMessage[] result = new ProcessorMessage[count];
-//        while (rs.next()) {
-//            result[i] = new ProcessorMessage(rs.getString("name"), rs.getDouble("coefficient"));
-//            i++;
-//        }
-//        return result;
-//    }
-//
-//    public CameraMessage[] getAllCameras() throws IOException, SQLException, ClassNotFoundException {
-//        Connection connection = getDbConnection();
-//        Statement stmt = connection.createStatement();
-//        count = 0;
-//        ResultSet rs = stmt.executeQuery("select count(*) from " + CAMERA_TABLE);
-//        while (rs.next()) {
-//            count =  rs.getInt(1);
-//        }
-//
-//        rs = stmt.executeQuery("SELECT quality, coefficient FROM " + CAMERA_TABLE);
-//        int i = 0;
-//        CameraMessage[] result = new CameraMessage[count];
-//        while (rs.next()) {
-//            result[i] = new CameraMessage(rs.getInt("quality"), rs.getDouble("coefficient"));
-//            i++;
-//        }
-//        return result;
-//    }
-//
-//    public ScreenMessage[] getAllScreens() throws IOException, SQLException, ClassNotFoundException {
-//        Connection connection = getDbConnection();
-//        Statement stmt = connection.createStatement();
-//        count = 0;
-//        ResultSet rs = stmt.executeQuery("select count(*) from " + SCREEN_TABLE);
-//        while (rs.next()) {
-//            count =  rs.getInt(1);
-//        }
-//
-//        rs = stmt.executeQuery("SELECT size, coefficient FROM " + SCREEN_TABLE);
-//        int i = 0;
-//        ScreenMessage[] result = new ScreenMessage[count];
-//        while (rs.next()) {
-//            result[i] = new ScreenMessage(rs.getInt("size"), rs.getDouble("coefficient"));
-//            i++;
-//        }
-//        return result;
-//    }
-//
-//    public OrderMessage[] getAllOrders() throws IOException, SQLException, ClassNotFoundException {
-//        Connection connection = getDbConnection();
-//        Statement stmt = connection.createStatement();
-//        int count = 0;
-//        ResultSet rs = stmt.executeQuery("select count(*) from " + ORDER_TABLE);
-//        while (rs.next()) {
-//            count =  rs.getInt(1);
-//        }
-//
-//        rs = stmt.executeQuery("SELECT idOrder, user, phone, amount FROM " + ORDER_TABLE);
-//        int i = 0;
-//        OrderMessage[] result = new OrderMessage[count];
-//        while (rs.next()) {
-//            result[i] = new OrderMessage(rs.getInt("idOrder"), rs.getString("user"),
-//                    rs.getInt("phone"), rs.getInt("amount"));
-//            i++;
-//        }
-//        return result;
-//    }
-//
 }
