@@ -77,10 +77,13 @@
       post.addEventListener('click', ()=> {
         var arr = document.getElementsByClassName('elem'), json = Array(arr.length / 2);
         for (var i=0, j=0; i<arr.length; i+=2, j++) {
-          json[j] = {
-            name: arr[i].value,
-            kol: arr[i+1].value,
-            id: list[arr[i].value]
+          for (var k=0; k<list.length; k++) {
+            if (arr[i] == list[j].name) 
+            json[j] = {
+              name: arr[i].value,
+              kol: arr[i+1].value,
+              id: list[j].id
+            }
           }
         }
         json = JSON.stringify(json);
