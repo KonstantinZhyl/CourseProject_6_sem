@@ -45,6 +45,7 @@
     </footer>
     <script type='text/javascript'>
       function getAllProducts(){
+          var temp;
         var request = new XMLHttpRequest();
         request.open('GET', 'Http://Localhost:8765', true);
         request.setRequestHeader('command', 'getAllProducts');
@@ -76,16 +77,17 @@
         document.getElementById('place').appendChild(area);
       });
       post.addEventListener('click', ()=> {
+          alert(list);
         var arr = document.getElementsByClassName('elem'), json = Array(arr.length / 2);
         for (var i=0, j=0; i<arr.length; i+=2, j++) {
-          for (var k=0; k<list.length; k++) {
-            if (arr[i].value == list[k].name) 
-            json[j] = {
-              name: arr[i].value,
-              kol: arr[i+1].value,
-              id: list[k].id
+            for (var k = 0; k < list.length; k++) {
+                if (arr[i].value == list[k].name)
+                    json[j] = {
+                        name: arr[i].value,
+                        kol: arr[i + 1].value,
+                        id: list[k].id
+                    }
             }
-          }
         }
         json = JSON.stringify(json);
         var mess = {};
