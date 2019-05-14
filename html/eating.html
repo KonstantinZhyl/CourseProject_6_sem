@@ -80,17 +80,14 @@
           alert(list);
         var arr = document.getElementsByClassName('elem'), json = Array(arr.length / 2);
         for (var i=0, j=0; i<arr.length; i+=2, j++) {
-          for (var k=0; k<list.length; k++) {
-            if (arr[i].value == list[k].name) 
-            json[j] = {
-                name: arr[i].value,
-                kol: arr[i+1].value
+            for (var k = 0; k < list.length; k++) {
+                if (arr[i].value == list[k].name)
+                    json[j] = {
+                        name: arr[i].value,
+                        kol: arr[i + 1].value,
+                        id: list[k].id
+                    }
             }
-          for (var k=0; k<list.length; k++) {
-              alert(list[k].name)
-              alert(list[k].id)
-            if (arr[i].value == list[k].name) json[j].id = list[k].id;
-          }
         }
         json = JSON.stringify(json);
         var mess = {};

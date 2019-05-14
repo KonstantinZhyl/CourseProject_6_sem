@@ -73,17 +73,18 @@ public class DatabaseHandler extends Configs {
         ResultSet rs;
         JsonObject object = new JsonObject();
 
-        rs = stmt.executeQuery("SELECT id, name, surname, login, password, role, email, birthdate, diet_id FROM " + USER_TABLE);
+        rs = stmt.executeQuery("SELECT id, name, surname, login, password, role, email, birthdate, diet_id FROM " + USER_TABLE +
+        "WHERE id = " + Integer.toString(user_id));
         while (rs.next()) {
             object.put("id", rs.getInt("id"));
             object.put("type", rs.getString("name"));
             object.put("description", rs.getString("surname"));
-            object.put("calories", rs.getInt("login"));
-            object.put("calories", rs.getInt("password"));
-            object.put("calories", rs.getInt("role"));
-            object.put("calories", rs.getInt("email"));
-            object.put("calories", rs.getInt("birthdate"));
-            object.put("calories", rs.getInt("diet_id"));
+            object.put("loging", rs.getString("login"));
+            object.put("password", rs.getString("password"));
+            object.put("role", rs.getString("role"));
+            object.put("email", rs.getString("email"));
+            object.put("birthdate", rs.getString("birthdate"));
+            object.put("diet_id", rs.getInt("diet_id"));
         }
         return object;
     }
@@ -211,7 +212,8 @@ public class DatabaseHandler extends Configs {
         ResultSet rs;
         JsonObject object = new JsonObject();
 
-        rs = stmt.executeQuery("SELECT id, type, description, calories FROM " + DIET_TABLE);
+        rs = stmt.executeQuery("SELECT id, type, description, calories FROM " + DIET_TABLE + "WHERE id = "
+                + Integer.toString(diet_id));
         while (rs.next()) {
             object.put("id", rs.getInt("id"));
             object.put("type", rs.getString("type"));
@@ -221,7 +223,7 @@ public class DatabaseHandler extends Configs {
         return object;
     }
 
-    public JsonObject dbGetAllDiet() throws IOException, SQLException, ClassNotFoundException {
+    public JsonObject dbGetAllDiets() throws IOException, SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         Statement stmt = connection.createStatement();
         ResultSet rs;
@@ -284,7 +286,9 @@ public class DatabaseHandler extends Configs {
         Connection connection = getDbConnection();
         Statement stmt = connection.createStatement();
 
-        ResultSet rs = stmt.executeQuery("SELECT id FROM " + USER_TABLE + " WHERE login = " + login);
+        String sql = "SELECT id FROM " + USER_TABLE + " WHERE login = \'" + login + "\'";
+
+        ResultSet rs = stmt.executeQuery(sql);
 
         int result = -1;
         while (rs.next()) {

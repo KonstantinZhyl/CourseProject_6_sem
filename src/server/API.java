@@ -105,12 +105,11 @@ public class API extends DatabaseHandler {
             case "getUserDiet":
                 getUserDiet();
                 break;
-            case "getAllDiet":
-                getAllDiet();
+            case "getAllDiets":
+                getAllDiets();
                 break;
             default:
                 sendResponse(200, null);
-
         }
     }
 
@@ -120,7 +119,7 @@ public class API extends DatabaseHandler {
                 registrate();
                 break;
             case "addProduct":
-                addProduct();
+                addProducts();
                 break;
             case "updateDiet":
                 updateDiet();
@@ -147,7 +146,7 @@ public class API extends DatabaseHandler {
         sendResponse(200, products.toJson());
     }
 
-    private void addProduct() throws SQLException, ClassNotFoundException, IOException {
+    private void addProducts() throws SQLException, ClassNotFoundException, IOException {
         JsonArray products = (JsonArray) this.body.get("Products");
         for (int i=0; i < products.size(); i++) {
             dbInsertProduct((JsonObject) products.get(i));
@@ -158,12 +157,14 @@ public class API extends DatabaseHandler {
         String login = headers.getFirst("login");
         int user_id = getUserIdByLogin(login);
         JsonObject user = dbGetUser(user_id);
-        JsonObject diet = dbGetDiet(user.getInteger("diet_id"));
+        String st = user.toJson();
+        int diet_id = (int) user.get("diet_id");
+        JsonObject diet = dbGetDiet(diet_id);
         sendResponse(200, diet.toJson());
     }
 
-    private void getAllDiet() throws SQLException, IOException, ClassNotFoundException {
-        JsonObject diets = dbGetAllDiet();
+    private void getAllDiets() throws SQLException, IOException, ClassNotFoundException {
+        JsonObject diets = dbGetAllDiets();
         sendResponse(200, diets.toJson());
     }
 
