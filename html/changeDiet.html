@@ -25,9 +25,7 @@
         </nav>      
     </header>
     <main>
-        <select id="list" >
-
-        </select>
+        <select id="list"></select>
         <p id="discrpt">wfjkwpofpfgjrogfergrogjerogjerogjoergjowp</p>
         <button id="post" class="butt" type="button">Подтвердить</button>
     </main>
@@ -40,12 +38,14 @@
         </div>
     </footer>
     <script type='text/javascript'>
-        const opt = document.getElementsByClassName('opt');
-        const arr = document.getElementById('list');
-        const discrpt = document.getElementById('discrpt');
-        for (let j=0; j<opt.length; j++) opt[j].addEventListener('click', ()=>{
-          discrpt.innerHTML = list[j].discription;
-        });
+        function view() {
+          const opt = document.getElementsByClassName('opt');
+          const arr = document.getElementById('list');
+          const discrpt = document.getElementById('discrpt');
+          for (let j=0; j<opt.length; j++) opt[j].addEventListener('click', ()=>{
+            discrpt.innerHTML = list[j].discription;
+          });
+        }
         function getAllDiets(){
           var request = new XMLHttpRequest();
           request.open('GET', 'Http://Localhost:8765', true);
@@ -58,18 +58,16 @@
           } else {
             list = JSON.parse(this.responseText).Diets;
             for (var i=0; i<list.length; i++) {
-                alert(list[i].type);
-                alert(list[i].calories);
-                alert(list[i].description);
               var tmp = document.createElement('option');
               tmp.classList.add('opt');
               tmp.innerHTML = list[i].type + ' (' + list[i].calories + ' kKal)';
               if (i === 0) {
-                discrpt.innerHTML = list[i].description;
+                discrpt.innerHTML = list[i].discription;
                 tmp.setAttribute('selected', true);
               }
               arr.appendChild(tmp);
             }
+            view();
           }
         }
       } 

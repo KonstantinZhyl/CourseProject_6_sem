@@ -53,13 +53,13 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="2" />
-          <entry key="html" value="7" />
+          <entry key="html" value="8" />
           <entry key="java" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="7" />
+          <entry key="HTML" value="8" />
           <entry key="JAVA" value="19" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
@@ -67,14 +67,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="6" />
-          <entry key="html" value="938" />
-          <entry key="java" value="5975" />
+          <entry key="html" value="946" />
+          <entry key="java" value="5976" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="938" />
-          <entry key="JAVA" value="5972" />
+          <entry key="HTML" value="946" />
+          <entry key="JAVA" value="5973" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="SQL" value="3" />
         </counts>
@@ -352,7 +352,7 @@
       <workItem from="1557755193159" duration="5150000" />
       <workItem from="1557772635722" duration="3931000" />
       <workItem from="1557811954778" duration="4340000" />
-      <workItem from="1557823744914" duration="6708000" />
+      <workItem from="1557823744914" duration="7348000" />
     </task>
     <servers />
   </component>
@@ -371,7 +371,7 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992908" visible="true" weight="0.2771812" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992908" visible="true" weight="0.2771812" />
       <window_info id="Structure" order="1" sideWeight="0.50070924" side_tool="true" weight="0.25771812" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -380,8 +380,8 @@
       <window_info id="Favorites" order="6" sideWeight="0.50070924" side_tool="true" weight="0.25771812" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36737588" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" weight="0.40425533" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36737588" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" visible="true" weight="0.40425533" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32907802" />
@@ -636,6 +636,13 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/editing.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="92" column="13" selection-start-line="92" selection-start-column="13" selection-end-line="92" selection-end-column="13" />
         </state>
       </provider>
     </entry>

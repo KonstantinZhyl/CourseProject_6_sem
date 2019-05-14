@@ -90,12 +90,13 @@
             }
         }
         json = JSON.stringify(json);
-        var mess = {};
-        mess.Products = json;
+        var mess = {
+          Products: json
+        };
         var request = new XMLHttpRequest();
         request.open('POST', '/html/mainAush.html', true);
         request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-        request.setRequestHeader('command', 'addIngestion');
+        request.setRequestHeader('command', 'addProducts');
         request.send(mess);
         request.onreadystatechange = function(){
           if (this.readyState != 4) return;
