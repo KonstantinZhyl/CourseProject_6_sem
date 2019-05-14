@@ -70,17 +70,16 @@ public class DatabaseHandler extends Configs {
     public boolean dbUpdateUser(JsonObject object)
             throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
-        String update = "UPDATE " + USER_TABLE + " SET name = ?, surname = ?, login = ? password = ? " +
-                "role = ? email = ? birthdate = ? WHERE id = ?";
+        String update = "UPDATE " + USER_TABLE + " SET name = ?, surname = ?, login = ?, password = ?, " +
+                "email = ?, birthdate = ? WHERE id = ?";
         PreparedStatement prSt = connection.prepareStatement(update);
         prSt.setString(1, object.getString("name"));
         prSt.setString(2, object.getString("surname"));
         prSt.setString(3, object.getString("login"));
         prSt.setString(4, object.getString("password"));
-        prSt.setString(5, object.getString("role"));
-        prSt.setString(6, object.getString("email"));
-        prSt.setDate(7, Date.valueOf(object.getString("birthdate")));
-        prSt.setInt(8, object.getInteger("id"));
+        prSt.setString(5, object.getString("email"));
+        prSt.setDate(6, Date.valueOf(object.getString("birthdate")));
+        prSt.setInt(7, object.getInteger("id"));
         prSt.executeUpdate();
         return true;
     }
@@ -95,9 +94,9 @@ public class DatabaseHandler extends Configs {
         "WHERE id = " + Integer.toString(user_id));
         while (rs.next()) {
             object.put("id", rs.getInt("id"));
-            object.put("type", rs.getString("name"));
-            object.put("description", rs.getString("surname"));
-            object.put("loging", rs.getString("login"));
+            object.put("name", rs.getString("name"));
+            object.put("surname", rs.getString("surname"));
+            object.put("login", rs.getString("login"));
             object.put("password", rs.getString("password"));
             object.put("role", rs.getString("role"));
             object.put("email", rs.getString("email"));

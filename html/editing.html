@@ -71,8 +71,8 @@
                 document.getElementById('surname').value = json.surname;
                 document.getElementById('login').value = json.login;
                 document.getElementById('password').value = json.password;
-                document.getElementById('mail').value = json.mail;
-                document.getElementById('date').value = json.date;    
+                document.getElementById('mail').value = json.email;
+                document.getElementById('date').value = json.birthdate;
                 id = json.id;
             }
         }
@@ -80,17 +80,17 @@
             const name = document.getElementById('name').value;
             const surname = document.getElementById('surname').value;
             const login = document.getElementById('login').value;
-            const newpassword = document.getElementById('newpassword').value;
-            const mail = document.getElementById('mail').value;
-            const date = document.getElementById('date').value;
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('mail').value;
+            const birthdate = document.getElementById('date').value;
             var json = JSON.stringify({
                 id: id,
                 name: name,
                 surname: surname,
                 login: login,
                 password: password,
-                mail: mail,
-                date: date
+                email: email,
+                birthdate: birthdate
             });
             var request = new XMLHttpRequest();
             document.cookie = document.cookie.substring(document.cookie.indexOf(' ')+1);

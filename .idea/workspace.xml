@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa60d0b7-ee6f-4d5f-8d8b-01a89bf3ab4b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/html/changeDiet.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/changeDiet.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/API.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/editing.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/editing.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/DatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/DatabaseHandler.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -87,13 +86,13 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="2" />
-          <entry key="html" value="11" />
+          <entry key="html" value="12" />
           <entry key="java" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="11" />
+          <entry key="HTML" value="12" />
           <entry key="JAVA" value="20" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
@@ -101,14 +100,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="6" />
-          <entry key="html" value="1336" />
-          <entry key="java" value="8065" />
+          <entry key="html" value="1346" />
+          <entry key="java" value="8079" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="1336" />
-          <entry key="JAVA" value="8061" />
+          <entry key="HTML" value="1346" />
+          <entry key="JAVA" value="8075" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="SQL" value="4" />
         </counts>
@@ -120,28 +119,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server/DatabaseHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="75" column="52" lean-forward="true" selection-start-line="75" selection-start-column="52" selection-end-line="75" selection-end-column="52" />
+            <state relative-caret-position="263">
+              <caret line="80" column="32" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1557860616359" expanded="true" signature="3723:3828" ph="..." />
-                <marker date="1557860616359" expanded="true" signature="3829:4660" ph="..." />
+                <marker date="1557862191443" expanded="true" signature="3661:3766" ph="..." />
+                <marker date="1557862191443" expanded="true" signature="3767:4593" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/API.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="210" column="49" lean-forward="true" selection-start-line="210" selection-start-column="49" selection-end-line="210" selection-end-column="49" />
+            <state relative-caret-position="260">
+              <caret line="221" selection-start-line="221" selection-end-line="221" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/main.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="8">
+              <caret line="62" column="26" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -180,8 +188,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/editing.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="53" column="9" lean-forward="true" selection-start-line="48" selection-start-column="8" selection-end-line="53" selection-end-column="9" />
+            <state relative-caret-position="246">
+              <caret line="87" column="27" lean-forward="true" selection-start-line="87" selection-start-column="27" selection-end-line="87" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -189,8 +197,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/changeDiet.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="78" column="13" lean-forward="true" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
+            <state relative-caret-position="942">
+              <caret line="112" column="13" lean-forward="true" selection-start-line="112" selection-start-column="13" selection-end-line="112" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -213,20 +221,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/ingestion.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1128" />
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>user</find>
-      <find>db_check</find>
-      <find>private</find>
       <find>delPhone</find>
       <find>insert</find>
       <find>@.*</find>
@@ -240,7 +238,6 @@
       <find>Products</find>
       <find>getUserI</find>
       <find>GetDiet</find>
-      <find>GetUser</find>
       <find>dbGetAllDiet</find>
       <find>addI</find>
       <find>InsertPro</find>
@@ -254,6 +251,10 @@
       <find>Update</find>
       <find>Insert</find>
       <find>UpdateDi</find>
+      <find>input</find>
+      <find>GetUser</find>
+      <find>newpa</find>
+      <find>UpdateUser</find>
     </findStrings>
     <replaceStrings>
       <replace>protected</replace>
@@ -286,8 +287,9 @@
         <option value="$PROJECT_DIR$/src/server/Configs.java" />
         <option value="$PROJECT_DIR$/html/ingestion.html" />
         <option value="$PROJECT_DIR$/html/changeDiet.html" />
-        <option value="$PROJECT_DIR$/src/server/DatabaseHandler.java" />
         <option value="$PROJECT_DIR$/src/server/API.java" />
+        <option value="$PROJECT_DIR$/html/editing.html" />
+        <option value="$PROJECT_DIR$/src/server/DatabaseHandler.java" />
       </list>
     </option>
   </component>
@@ -351,7 +353,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557860945412" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557862389406" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/json-simple-2.3.0.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -414,7 +416,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96113000" />
+    <option name="totallyTimeSpent" value="97357000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -429,7 +431,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992908" visible="true" weight="0.2852349" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992908" visible="true" weight="0.2852349" />
       <window_info id="Structure" order="1" sideWeight="0.50070924" side_tool="true" weight="0.25771812" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -438,8 +440,8 @@
       <window_info id="Favorites" order="6" sideWeight="0.50070924" side_tool="true" weight="0.25771812" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24822696" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" weight="0.3460993" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.24822696" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" visible="true" weight="0.3460993" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32907802" />
@@ -469,34 +471,22 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/server/API.java</url>
-          <line>182</line>
+          <url>file://$PROJECT_DIR$/src/server/DatabaseHandler.java</url>
+          <line>289</line>
           <properties />
-          <option name="timeStamp" value="72" />
+          <option name="timeStamp" value="87" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/server/API.java</url>
-          <line>192</line>
+          <line>217</line>
           <properties />
-          <option name="timeStamp" value="78" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/server/API.java</url>
-          <line>161</line>
-          <properties />
-          <option name="timeStamp" value="80" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/server/API.java</url>
-          <line>202</line>
-          <properties />
-          <option name="timeStamp" value="86" />
+          <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/server/DatabaseHandler.java</url>
-          <line>290</line>
+          <line>74</line>
           <properties />
-          <option name="timeStamp" value="87" />
+          <option name="timeStamp" value="90" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -617,13 +607,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="25" column="24" lean-forward="true" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
@@ -685,17 +668,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/editing.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="53" column="9" lean-forward="true" selection-start-line="48" selection-start-column="8" selection-end-line="53" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/html/changeDiet.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="78" column="13" lean-forward="true" selection-start-line="78" selection-start-column="13" selection-end-line="78" selection-end-column="13" />
+        <state relative-caret-position="942">
+          <caret line="112" column="13" lean-forward="true" selection-start-line="112" selection-start-column="13" selection-end-line="112" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -706,24 +682,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/DatabaseHandler.java">
+    <entry file="file://$PROJECT_DIR$/css/ingestion.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="75" column="52" lean-forward="true" selection-start-line="75" selection-start-column="52" selection-end-line="75" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1557860616359" expanded="true" signature="3723:3828" ph="..." />
-            <marker date="1557860616359" expanded="true" signature="3829:4660" ph="..." />
-          </folding>
+        <state relative-caret-position="-1128" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8">
+          <caret line="62" column="26" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/editing.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="87" column="27" lean-forward="true" selection-start-line="87" selection-start-column="27" selection-end-line="87" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/API.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="210" column="49" lean-forward="true" selection-start-line="210" selection-start-column="49" selection-end-line="210" selection-end-column="49" />
+        <state relative-caret-position="260">
+          <caret line="221" selection-start-line="221" selection-end-line="221" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/DatabaseHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="80" column="32" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1557862191443" expanded="true" signature="3661:3766" ph="..." />
+            <marker date="1557862191443" expanded="true" signature="3767:4593" ph="..." />
           </folding>
         </state>
       </provider>
