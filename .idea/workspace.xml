@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa60d0b7-ee6f-4d5f-8d8b-01a89bf3ab4b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/html/changeDiet.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/ingestion.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/ingestion.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/eating.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/eating.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/API.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/DatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/DatabaseHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/ingestion.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/ingestion.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -98,8 +98,8 @@
               <caret line="216" column="34" lean-forward="true" selection-start-line="216" selection-start-column="34" selection-end-line="216" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1557827153161" expanded="true" signature="2819:2924" ph="..." />
-                <marker date="1557827153161" expanded="true" signature="2925:3698" ph="..." />
+                <marker date="1557827447362" expanded="true" signature="2819:2924" ph="..." />
+                <marker date="1557827447362" expanded="true" signature="2925:3698" ph="..." />
               </folding>
             </state>
           </provider>
@@ -132,7 +132,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/server/API.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
@@ -153,11 +153,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/eating.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1326">
-              <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+            <state relative-caret-position="691">
+              <caret line="82" column="9" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -221,7 +221,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
     <option name="width" value="1940" />
@@ -333,12 +333,12 @@
       <workItem from="1557755193159" duration="5150000" />
       <workItem from="1557772635722" duration="3931000" />
       <workItem from="1557811954778" duration="4340000" />
-      <workItem from="1557823744914" duration="2926000" />
+      <workItem from="1557823744914" duration="3195000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78612000" />
+    <option name="totallyTimeSpent" value="78881000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -353,7 +353,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992908" visible="true" weight="0.2771812" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992908" visible="true" weight="0.2771812" />
       <window_info id="Structure" order="1" sideWeight="0.50070924" side_tool="true" weight="0.25771812" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -542,13 +542,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/eating.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/server/SimpleHttpServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -576,8 +569,8 @@
           <caret line="216" column="34" lean-forward="true" selection-start-line="216" selection-start-column="34" selection-end-line="216" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1557827153161" expanded="true" signature="2819:2924" ph="..." />
-            <marker date="1557827153161" expanded="true" signature="2925:3698" ph="..." />
+            <marker date="1557827447362" expanded="true" signature="2819:2924" ph="..." />
+            <marker date="1557827447362" expanded="true" signature="2925:3698" ph="..." />
           </folding>
         </state>
       </provider>
@@ -589,6 +582,13 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/eating.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="691">
+          <caret line="82" column="9" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
         </state>
       </provider>
     </entry>

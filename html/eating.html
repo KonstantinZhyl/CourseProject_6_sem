@@ -55,8 +55,7 @@
             alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
             return;
           } else {
-              temp = JSON.parse(this.responseText);
-              list = temp.Products;
+            list = JSON.parse(this.responseText).Products;
           }
         }
       }
@@ -81,6 +80,8 @@
           alert(list);
         var arr = document.getElementsByClassName('elem'), json = Array(arr.length / 2);
         for (var i=0, j=0; i<arr.length; i+=2, j++) {
+          for (var k=0; k<list.length; k++) {
+            if (arr[i].value == list[k].name) 
             json[j] = {
                 name: arr[i].value,
                 kol: arr[i+1].value
@@ -92,12 +93,13 @@
           }
         }
         json = JSON.stringify(json);
-        alert(json)
+        var mess = {};
+        mess.Products = json;
         var request = new XMLHttpRequest();
         request.open('POST', '/html/mainAush.html', true);
         request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-        request.setRequestHeader('command', 'addProduct');
-        request.send(json);
+        request.setRequestHeader('command', 'addIngestion');
+        request.send(mess);
         request.onreadystatechange = function(){
           if (this.readyState != 4) return;
           if (this.status != 200) {

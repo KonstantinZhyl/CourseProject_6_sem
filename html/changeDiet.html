@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/ingestion.css">
+    <title>Изменить диету</title>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a class="logo" href="">
+              <span>З</span>
+              <span>O</span>
+              <span>Ж</span>
+            </a>
+            <ul id="menu">
+              <li><a href="/html/main.html">Главная</a></li>
+              <li><a href="/html/aboutUs.html">О нас</a></li>
+              <li><a href="/html/ingestion.html">Питание</a></li>
+              <li><a href="/html/activity.html">Активность</a></li>
+            </ul>
+        </nav>      
+    </header>
+    <main>
+        <select id="list" size="2">
+            <option selected class="opt">123 (123 kKal)</option>
+            <option class="opt">321</option>
+        </select>
+        <p id="discrpt">wfjkwpofpfgjrogfergrogjerogjerogjoergjowp</p>
+        <button id="post" class="butt" type="button">Подтвердить</button>
+    </main>
+    <footer>
+        <div class="container">
+          <div class="footer-col"><span>Ждём Вам фидбэк:D</span></div>
+          <div class="footer-col">
+            <a href="ZOJ@gmail.com">ZOJ@gmail.com</a>
+          </div>
+        </div>
+    </footer>
+    <script type='text/javascript'>
+        const opt = document.getElementsByClassName('opt');
+        const discrpt = document.getElementById('discrpt');
+        for (let j=0; j<opt.length; j++) opt[j].addEventListener('click', ()=>{
+          discrpt.innerHTML = list[j].discription;
+        });
+        function getAllDiets(){
+          var request = new XMLHttpRequest();
+          request.open('GET', 'Http://Localhost:8765', true);
+          request.setRequestHeader('command', 'getAllDiets');
+          request.send();
+          request.onload = function() {
+          if (this.status != 200) {
+            alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
+            return;
+          } else {
+            list = JSON.parse(this.responseText).Diets;
+            for (var i=0; i<list.length; i++) {
+              let tmp = document.createElement('option');
+              tmp.classList.add('opt');
+              tmp.innerHTML = list[i].type + ' (' + list[i].calories + ' kKal)';
+              if (i === 0) {
+                discrpt.innerHTML = list[i].discription;
+                tmp.setAttribute('selected');
+              }
+              discrpt.appendChild(tmp);
+            }
+          }
+        }
+      } 
+      var list;
+    </script>
+</body>
+</html>
