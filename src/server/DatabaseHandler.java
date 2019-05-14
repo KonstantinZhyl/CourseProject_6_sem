@@ -67,6 +67,24 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
+    public boolean dbUpdateUser(JsonObject object)
+            throws SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        String update = "UPDATE " + USER_TABLE + " SET name = ?, surname = ?, login = ? password = ? " +
+                "role = ? email = ? birthdate = ? WHERE id = ?";
+        PreparedStatement prSt = connection.prepareStatement(update);
+        prSt.setString(1, object.getString("name"));
+        prSt.setString(2, object.getString("surname"));
+        prSt.setString(3, object.getString("login"));
+        prSt.setString(4, object.getString("password"));
+        prSt.setString(5, object.getString("role"));
+        prSt.setString(6, object.getString("email"));
+        prSt.setDate(7, Date.valueOf(object.getString("birthdate")));
+        prSt.setInt(8, object.getInteger("id"));
+        prSt.executeUpdate();
+        return true;
+    }
+
     public JsonObject dbGetUser(int user_id) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         Statement stmt = connection.createStatement();

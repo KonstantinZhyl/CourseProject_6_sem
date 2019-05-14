@@ -115,6 +115,9 @@ public class API extends DatabaseHandler {
             case "getLastWeek":
                 getLastWeek();
                 break;
+            case "getUser":
+                getUser();
+                break;
             default:
                 sendResponse(200, null);
         }
@@ -130,6 +133,8 @@ public class API extends DatabaseHandler {
                 break;
             case "updateDiet":
                 updateDiet();
+            case "updateUser":
+                updateUser();
             default:
                 sendResponse(200, null);
         }
@@ -200,5 +205,21 @@ public class API extends DatabaseHandler {
         int user_id = getUserIdByLogin(login);
         JsonObject products = dbGetLastIngestions(user_id, date.toString());
         sendResponse(200, products.toJson());
+    }
+
+    private void getUser() throws SQLException, IOException, ClassNotFoundException {
+        String login = headers.getFirst("login");
+        int user_id = getUserIdByLogin(login);
+        JsonObject user = dbGetUser(user_id);
+        sendResponse(200, user.toJson());
+    }
+
+    private void updateUser() throws SQLException, ClassNotFoundException, IOException {
+        if (this.body.get("password") == null) {
+            JsonObject user = dbGetUser(this.body.getInteger("id"));
+            this.body.put("password", user.getString("password"));
+        }
+        dbUpdateUser(this.body);
+        sendResponse(200, null);
     }
 }

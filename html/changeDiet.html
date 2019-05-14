@@ -25,11 +25,15 @@
         </nav>      
     </header>
     <main>
+<<<<<<< HEAD
         <select id="list">
           <option>123</option>
           <option>12</option>
           <option>123</option>
         </select>
+=======
+        <select id="list1"></select>
+>>>>>>> master
         <p id="discrpt">wfjkwpofpfgjrogfergrogjerogjerogjoergjowp</p>
         <button id="post" class="butt" type="button">Подтвердить</button>
     </main>
@@ -42,6 +46,7 @@
         </div>
     </footer>
     <script type='text/javascript'>
+<<<<<<< HEAD
         
       function getAllDiets(){
         var request = new XMLHttpRequest();
@@ -51,10 +56,31 @@
         request.send();
         request.onload = function() {
         if (this.status != 200) {
+=======
+        let list;
+        function getCookie(name) {
+            var matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+        function getAllDiets(){
+          var request = new XMLHttpRequest();
+          request.open('GET', 'Http://Localhost:8765', true);
+          request.setRequestHeader('command', 'getAllDiets');
+          request.setRequestHeader('login', getCookie('login'));
+          request.send();
+          request.onload = function() {
+          if (this.status != 200) {
+>>>>>>> master
             alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
             return;
           } else {
             list = JSON.parse(this.responseText).Diets;
+
+            const arr = document.getElementById('list1');
+            const discrpt = document.getElementById('discrpt');
+
             for (var i=0; i<list.length; i++) {
               var tmp = document.createElement('option');
               const arr = document.getElementById('list');
@@ -62,7 +88,7 @@
               tmp.classList.add('opt');
               tmp.innerHTML = list[i].type + ' (' + list[i].calories + ' kKal)';
               if (i === 0) {
-                discrpt.innerHTML = list[i].discription;
+                discrpt.innerHTML = list[i].description;
                 tmp.setAttribute('selected', true);
               }
               tmp.addEventListener('click', ()=>{
@@ -70,6 +96,7 @@
               })
               arr.appendChild(tmp);
             }
+<<<<<<< HEAD
           }
         }
       }
@@ -77,6 +104,16 @@
         if (event.target.tagName != 'SELECT') alert("target = " + event.target.tagName);
       }); 
       var list;
+=======
+
+          }
+        }
+      }
+        const opt = document.getElementsByClassName('opt');
+        for (let j=0; j<opt.length; j++) opt[j].addEventListener('click', ()=>{
+            discrpt.innerHTML = 123;
+        });
+>>>>>>> master
       getAllDiets();
     </script>
 </body>
