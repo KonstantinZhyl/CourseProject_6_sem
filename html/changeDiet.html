@@ -50,6 +50,7 @@
           var request = new XMLHttpRequest();
           request.open('GET', 'Http://Localhost:8765', true);
           request.setRequestHeader('command', 'getAllDiets');
+          request.setRequestHeader('login', getCookie('login'));
           request.send();
           request.onload = function() {
           if (this.status != 200) {

@@ -35,13 +35,6 @@
             <br/>
             <a href="/html/eating.html"><button id="add_ingestion" class="button_diet2" type="button">Добавить приём пищи</button></a>
         </div>
-        <div class="table">
-            <h2>Данные с <input id="ot" type="date"/> по <input id="po" type="date"/></h2>
-            <button id="pol" class="butt" type="button">Получить</button>
-            <div id="all">
-                
-            </div>
-        </div>
     </main>
     <footer>
         <div class="container">
@@ -51,17 +44,11 @@
             </div>
           </div>
     </footer>
+    
     <script type='text/javascript'>        
       function drawBasic() {
-        var data = new google.visualization.DataTable();
-        //data.addColumn('date', 'Day');
-        data.addColumn('string', 'Day');
-        data.addColumn('number', 'kKal');
+        var data = dat;
 
-        data.addRows([
-          ['Day 1', 10],  ['Day 2', 23],  ['Day 3', 17]
-        ]);
-        
         var options = {
           hAxis: {
             title: 'Last week'
@@ -105,9 +92,45 @@
             }
         }
       }
+      function getLastWeek(){
+        var request = new XMLHttpRequest();
+        request.open('GET', 'Http://Localhost:8765', true);
+        request.setRequestHeader('command', 'getLastWeek');
+        request.setRequestHeader('login', getCookie('login'));
+        request.setRequestHeader('password', getCookie('password'));
+        request.send();
+        request.onload = function() {
+            if (this.status != 200) {
+                alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
+                return;
+            } else {
+              var json = JSON.parse(this.responseText);
+              json.sort((a,b) => a-b);
+              var dat = new google.visualization.DataTable();
+              dat.addColumn('string', 'Day');
+              dat.addColumn('number', 'kKal');
+              let cal = Array(7).fill(0), dd = Array(7).fill(0), i=0, k=0;
+              cal[0] += json[0].calories;
+              dd[0] = json[0].date;
+              while (i+1<json.length){
+                if (json[i].date === json[i+1].date) {
+                  cal[k] +=json[i+1].calories;
+                } else {
+                  dat.addRows([dd[k], cal[k]]);
+                  k++;
+                  cal[k] += json[i+1].calories;
+                  dd[k] = json[i+1].date;
+                }
+                i++;
+              }
+            }
+            dat.addRows([dd[6], cal[6]]);
+            google.charts.load('current', {packages: ['corechart', 'line']});
+            google.charts.setOnLoadCallback(drawBasic);
+        }
+      }
       getDiet();
-      google.charts.load('current', {packages: ['corechart', 'line']});
-      google.charts.setOnLoadCallback(drawBasic);
+      getLastWeek();
     </script>
 </body>
 </html>
