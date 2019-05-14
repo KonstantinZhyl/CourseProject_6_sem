@@ -190,6 +190,17 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
+    public boolean dbInsertProductIngestion(int product_id, int ingestion_id) throws SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        String insert = "INSERT INTO " + PRODUCT_INGESTION_TABLE + "(product_id, ingestion_id)" +
+                " VALUES(?, ?)";
+        PreparedStatement prSt = connection.prepareStatement(insert);
+        prSt.setInt(1, product_id);
+        prSt.setInt(2, ingestion_id);
+        prSt.executeUpdate();
+        return true;
+    }
+
     // Diet
 
     public boolean dbUpdateDiet(JsonObject object)
@@ -252,7 +263,7 @@ public class DatabaseHandler extends Configs {
                 " VALUES(?, ?, ?)";
         PreparedStatement prSt = connection.prepareStatement(insert);
         prSt.setInt(1, user_id);
-        prSt.setString(2, date);
+        prSt.setDate(2, Date.valueOf(date));
         prSt.setInt(3, calories);
         prSt.executeUpdate();
         return true;
@@ -345,6 +356,27 @@ public class DatabaseHandler extends Configs {
             result_array.add(object);
         }
         result.put("Products", result_array);
+        return result;
+    }
+
+    public JsonObject dbGetLastIngestions(int user_id, String date) throws IOException, SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs;
+        JsonObject result = new JsonObject();
+        JsonArray result_array = new JsonArray();
+        Map object;
+
+        rs = stmt.executeQuery("SELECT user_id, date, calories FROM " + INGESTION_TABLE +
+                "WHERE date >= \'" + date + "\' and user_id = " + Integer.toString(user_id));
+        while (rs.next()) {
+            object = new LinkedHashMap(6);
+            object.put("user_id", rs.getInt("user_id"));
+            object.put("date", rs.getString("date"));
+            object.put("calories", rs.getInt("calories"));
+            result_array.add(object);
+        }
+        result.put("Ingestions", result_array);
         return result;
     }
 

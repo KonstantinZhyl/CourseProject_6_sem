@@ -16,5 +16,6 @@ public class Configs {
     protected static final String TRAINING_INFO_TABLE = "`training_info`";
     protected static final String PRODUCT_TABLE = "`product`";
     protected static final String DIET_TABLE = "`diet`";
-    protected static final String INGESTION_TABLE = "`ingestion_table`";
+    protected static final String INGESTION_TABLE = "`ingestion`";
+    protected static final String PRODUCT_INGESTION_TABLE = "`product_ingestion`";
 }

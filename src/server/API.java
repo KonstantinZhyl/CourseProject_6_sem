@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -111,6 +112,9 @@ public class API extends DatabaseHandler {
             case "getAllDiets":
                 getAllDiets();
                 break;
+            case "getLastWeek":
+                getLastWeek();
+                break;
             default:
                 sendResponse(200, null);
         }
@@ -166,8 +170,7 @@ public class API extends DatabaseHandler {
 
         for (int i = 0; i < products.size(); i++) {
             JsonObject product = (JsonObject) products.get(i);
-            product.put("ingestion_id", ingestion_id);
-            dbInsertProduct(product);
+            dbInsertProductIngestion(product.getInteger("id"), ingestion_id);
         }
     }
 
@@ -189,5 +192,13 @@ public class API extends DatabaseHandler {
     private void updateDiet() throws SQLException, ClassNotFoundException, IOException {
         dbUpdateDiet(this.body);
         sendResponse(200, null);
+    }
+
+    private void getLastWeek() throws IOException, SQLException, ClassNotFoundException {
+        LocalDate date = LocalDate.now().minusDays(7);
+        String login = headers.getFirst("login");
+        int user_id = getUserIdByLogin(login);
+        JsonObject products = dbGetLastIngestions(user_id, date.toString());
+        sendResponse(200, products.toJson());
     }
 }
