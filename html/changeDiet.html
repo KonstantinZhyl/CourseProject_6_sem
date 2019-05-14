@@ -25,15 +25,7 @@
         </nav>      
     </header>
     <main>
-<<<<<<< HEAD
-        <select id="list">
-          <option>123</option>
-          <option>12</option>
-          <option>123</option>
-        </select>
-=======
         <select id="list1"></select>
->>>>>>> master
         <p id="discrpt">wfjkwpofpfgjrogfergrogjerogjerogjoergjowp</p>
         <button id="post" class="butt" type="button">Подтвердить</button>
     </main>
@@ -46,17 +38,6 @@
         </div>
     </footer>
     <script type='text/javascript'>
-<<<<<<< HEAD
-        
-      function getAllDiets(){
-        var request = new XMLHttpRequest();
-        request.open('GET', 'Http://Localhost:8765', true);
-        request.setRequestHeader('command', 'getAllDiets');
-        request.setRequestHeader('login', getCookie('login'));
-        request.send();
-        request.onload = function() {
-        if (this.status != 200) {
-=======
         let list;
         function getCookie(name) {
             var matches = document.cookie.match(new RegExp(
@@ -72,7 +53,6 @@
           request.send();
           request.onload = function() {
           if (this.status != 200) {
->>>>>>> master
             alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
             return;
           } else {
@@ -96,7 +76,6 @@
               })
               arr.appendChild(tmp);
             }
-<<<<<<< HEAD
           }
         }
       }
@@ -104,16 +83,6 @@
         if (event.target.tagName != 'SELECT') alert("target = " + event.target.tagName);
       }); 
       var list;
-=======
-
-          }
-        }
-      }
-        const opt = document.getElementsByClassName('opt');
-        for (let j=0; j<opt.length; j++) opt[j].addEventListener('click', ()=>{
-            discrpt.innerHTML = 123;
-        });
->>>>>>> master
       getAllDiets();
     </script>
 </body>
