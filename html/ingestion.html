@@ -45,7 +45,8 @@
           </div>
     </footer>
     
-    <script type='text/javascript'>        
+    <script type='text/javascript'> 
+      let current_diet;       
       function drawBasic() {
         var data = dat;
 
@@ -89,6 +90,7 @@
               diet.innerHTML = json.type;
               description.innerHTML = json.description;
               kKal.innerHTML = '(' + json.calories + ' kKal)';
+              current_diet = json.calories;
             }
         }
       }
@@ -104,11 +106,12 @@
                 alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
                 return;
             } else {
-              var json = JSON.parse(this.responseText);
+              var json = JSON.parse(this.responseText).Ingestions;
               json.sort((a,b) => a-b);
               var dat = new google.visualization.DataTable();
-              dat.addColumn('string', 'Day');
-              dat.addColumn('number', 'kKal');
+              dat.addColumn('string', 'День');
+              dat.addColumn('number', 'кКал');
+              dat.addColumn('number', 'Текущая диета');
               let cal = Array(7).fill(0), dd = Array(7).fill(0), i=0, k=0;
               cal[0] += json[0].calories;
               dd[0] = json[0].date;
@@ -116,7 +119,7 @@
                 if (json[i].date === json[i+1].date) {
                   cal[k] +=json[i+1].calories;
                 } else {
-                  dat.addRows([dd[k], cal[k]]);
+                  dat.addRows([dd[k], cal[k], current_diet]);
                   k++;
                   cal[k] += json[i+1].calories;
                   dd[k] = json[i+1].date;
