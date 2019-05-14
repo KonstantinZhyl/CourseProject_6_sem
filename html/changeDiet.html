@@ -25,7 +25,11 @@
         </nav>      
     </header>
     <main>
-        <select id="list"></select>
+        <select id="list">
+          <option>123</option>
+          <option>12</option>
+          <option>123</option>
+        </select>
         <p id="discrpt">wfjkwpofpfgjrogfergrogjerogjerogjoergjowp</p>
         <button id="post" class="butt" type="button">Подтвердить</button>
     </main>
@@ -38,40 +42,40 @@
         </div>
     </footer>
     <script type='text/javascript'>
-        function view() {
-          const opt = document.getElementsByClassName('opt');
-          const arr = document.getElementById('list');
-          const discrpt = document.getElementById('discrpt');
-          for (let j=0; j<opt.length; j++) opt[j].addEventListener('click', ()=>{
-            discrpt.innerHTML = list[j].discription;
-          });
-        }
-        function getAllDiets(){
-          var request = new XMLHttpRequest();
-          request.open('GET', 'Http://Localhost:8765', true);
-          request.setRequestHeader('command', 'getAllDiets');
-          request.setRequestHeader('login', getCookie('login'));
-          request.send();
-          request.onload = function() {
-          if (this.status != 200) {
+        
+      function getAllDiets(){
+        var request = new XMLHttpRequest();
+        request.open('GET', 'Http://Localhost:8765', true);
+        request.setRequestHeader('command', 'getAllDiets');
+        request.setRequestHeader('login', getCookie('login'));
+        request.send();
+        request.onload = function() {
+        if (this.status != 200) {
             alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
             return;
           } else {
             list = JSON.parse(this.responseText).Diets;
             for (var i=0; i<list.length; i++) {
               var tmp = document.createElement('option');
+              const arr = document.getElementById('list');
+              const discrpt = document.getElementById('discrpt');
               tmp.classList.add('opt');
               tmp.innerHTML = list[i].type + ' (' + list[i].calories + ' kKal)';
               if (i === 0) {
                 discrpt.innerHTML = list[i].discription;
                 tmp.setAttribute('selected', true);
               }
+              tmp.addEventListener('click', ()=>{
+                document.getElementById('discrpt').innerHTML = tmp.innerHTML;
+              })
               arr.appendChild(tmp);
             }
-            view();
           }
         }
-      } 
+      }
+      document.body.addEventListener('click', (event)=> {
+        if (event.target.tagName != 'SELECT') alert("target = " + event.target.tagName);
+      }); 
       var list;
       getAllDiets();
     </script>

@@ -18,7 +18,7 @@
               <span>Ж</span>
             </a>
             <ul id="menu">
-                <li><a href="/html/main.html">Главная</a></li>
+                <li id="back">Главная</li>
                 <li><a href="/html/aboutUs.html">О нас</a></li>
                 <li><a href="/html/ingestion.html">Питание</a></li>
                 <li><a href="/html/activity.html">Активность</a></li>
@@ -42,5 +42,17 @@
             </div>
         </div>
     </footer>
+    <script>
+        function getCookie(name) {
+            var matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+        document.getElementById('back').addEventListener('click', ()=>{
+            if (getCookie('login') == null || getCookie('login') == '') window.open('/html/main.html');
+            else window.open('/html/mainAush.html');
+        });
+    </script>
 </body>
 </html>

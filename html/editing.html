@@ -46,6 +46,7 @@
         </div>
     </footer>
     <script type='text/javascript'>
+        let id;
         function getCookie(name) {
             var matches = document.cookie.match(new RegExp(
                 "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -53,10 +54,28 @@
             return matches ? decodeURIComponent(matches[1]) : undefined;
         }
         const update = document.getElementById('update');
-        const login = getCookie('login');
-        document.getElementById('login').value = login;
-        const password = getCookie('password');
-        document.getElementById('password').value = password;
+        var request = new XMLHttpRequest();
+        request.open('GET', 'Http://Localhost:8765', true);
+        request.setRequestHeader('command', 'getUser');
+        request.setRequestHeader('login', getCookie('login'));
+        document.cookie = 'login='+login;
+        document.cookie = 'password='+password;
+        request.send();
+        request.onload = function() {
+            if (this.status != 200) {
+                alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
+                return;
+            } else {
+                let json = JSON.parse(this.responseText);
+                document.getElementById('name').value = json.name;
+                document.getElementById('surname').value = json.surname;
+                document.getElementById('login').value = json.login;
+                document.getElementById('password').value = json.password;
+                document.getElementById('mail').value = json.mail;
+                document.getElementById('date').value = json.date;    
+                id = json.id;
+            }
+        }
         update.addEventListener('click', ()=>{
             const name = document.getElementById('name').value;
             const surname = document.getElementById('surname').value;
@@ -65,19 +84,22 @@
             const mail = document.getElementById('mail').value;
             const date = document.getElementById('date').value;
             var json = JSON.stringify({
+                id: id,
                 name: name,
                 surname: surname,
                 login: login,
                 password: password,
                 mail: mail,
-                date: date,
+                date: date
             });
             var request = new XMLHttpRequest();
+            document.cookie = document.cookie.substring(document.cookie.indexOf(' ')+1);
+            document.cookie = document.cookie.substring(document.cookie.indexOf(' ')+1);
             document.cookie = 'login='+login;
             document.cookie = 'password='+password;
             request.open('POST', '/html/mainAush.html', true);
             request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-            request.setRequestHeader('command', 'editing');
+            request.setRequestHeader('command', 'updateUser');
             request.setRequestHeader('login', getCookie('login'));
             request.send(json);
             request.onreadystatechange = function() {
