@@ -25,9 +25,17 @@
         </nav>      
     </header>
     <main>
-        <select id="list1"></select>
-        <p id="discrpt">wfjkwpofpfgjrogfergrogjerogjerogjoergjowp</p>
-        <button id="post" class="butt" type="button">Подтвердить</button>
+        <center><table id="diets">
+          <tr>
+            <td class="opt sel">Супер диета</td>
+            <td class="opt">Мега диета</td>
+            <td class="opt">Сушка</td>
+            <td class="opt">На массе</td>
+            <td class="opt">Сбалансированная</td>
+          </tr>
+        </table></center>
+        <center><p id="discrpt">wfjkwpofpfgjrogfergrogjerogjerogjoergjowp</p></center>
+        <center><button id="post" class="butt" type="button">Подтвердить</button></center>
     </main>
     <footer>
         <div class="container">
@@ -38,6 +46,11 @@
         </div>
     </footer>
     <script type='text/javascript'>
+        let opis = ['Одна из самых популярных среди тех, что появились в последнее время. И это не удивительно, так как эта система питания, рассчитанная на шесть дней, проста, даёт быстрый результат и достаточно комфортна с психологической точки зрения. Автором этой методики называют Анну Юханссон, шведского диетолога из Лундского университета.',
+         'Мега диета редполагает, что за три месяца худеющий потеряет от 7 до 15 килограммов, при этом вообще не испытывая чувства голода. Принцип кремлёвской диеты достаточно прост — вы ограничиваете потребление углеводов, в результате организм начинает перерабатывать накопившиеся запасы жира. Но в «кремлёвке» нужно считать баллы (очки) в зависимости от количества углеводов в продукте: 1 грамм углеводов равен 1 баллу. У этой системы похудения есть плюсы, но при этом немало минусов и противопоказаний.',
+          'Эта диета рассчитана на четыре недели, за которые худеющий потеряет до 20 и более килограммов веса, а также отметит ощутимое уменьшение объёмов. Этот способ похудения отличается своей строгостью, скромным списком противопоказаний и чётким меню. Фактически, это белковая диета с экстремально низким содержанием углеводов.',
+           'Обещает эффективное похудение, отсутствие голода, ощущение комфорта и очищение от токсинов и шлаков. Кроме этого, диета не сказывается на внешности, не делает ногти ломкими, кожу — раздражённой, а волосы — сухими. Эта система питания предполагает отсутствие чувства голода, потому что есть можно в любое время, но только те продукты, которые входят в рацион.',
+            'Любители яиц торжествуют, для них появилась отличная, вкусная и не голодная диета. Правда, у неё существуют и противопоказания. В первую очередь, нужно помнить о том, что в яичном желтке много холестерина. А также, что сваренные вкрутую яйца могут спровоцировать нарушения в пищеварении, вздутия и запоры. Так как на диете происходит резкий отказ от быстрых углеводов, то в первые дни может ощущаться вялость.'];
         let list;
         function getCookie(name) {
             var matches = document.cookie.match(new RegExp(
@@ -63,7 +76,7 @@
 
             for (var i=0; i<list.length; i++) {
               var tmp = document.createElement('option');
-              const arr = document.getElementById('list');
+              const arr = document.getElementById('list1');
               const discrpt = document.getElementById('discrpt');
               tmp.classList.add('opt');
               tmp.innerHTML = list[i].type + ' (' + list[i].calories + ' kKal)';
@@ -79,11 +92,18 @@
           }
         }
       }
-      document.body.addEventListener('click', (event)=> {
-        if (event.target.tagName != 'SELECT') alert("target = " + event.target.tagName);
-      }); 
-      var list;
-      getAllDiets();
+        document.getElementById('discrpt').innerHTML = opis[0];
+        const sels = document.getElementsByClassName('opt');
+        for (let i=0; i<sels.length; i++) sels[i].addEventListener('click', ()=> {
+          if (!sels[i].classList.contains('sel')) {
+            document.getElementsByClassName('sel')[0].classList.remove('sel');
+            sels[i].classList.add('sel');
+            document.getElementById('discrpt').innerHTML = opis[i];
+          } 
+        });
+        document.getElementById('post').addEventListener('click', ()=>{
+          window.open('/html/mainAush.html');
+        })
     </script>
 </body>
 </html>

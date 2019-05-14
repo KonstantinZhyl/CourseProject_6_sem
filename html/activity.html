@@ -53,9 +53,12 @@
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Day');
         data.addColumn('number', 'kKal');
-
+        console.log(new Date().toISOString().slice(0, 10));
         data.addRows([
-          ['Day 1', 10],  ['Day 2', 23],  ['Day 3', 17]
+          [new Date().toISOString().slice(0, 8).concat('09'), 900], [new Date().toISOString().slice(0, 9).concat('0'), 500], 
+          [new Date().toISOString().slice(0, 9).concat('1'), 650], [new Date().toISOString().slice(0, 9).concat('2'), 450],
+          [new Date().toISOString().slice(0, 9).concat('3'), 800], [new Date().toISOString().slice(0, 9).concat('4'), 650],
+          [new Date().toISOString().slice(0, 10), 200]
         ]);
         
         var options = {

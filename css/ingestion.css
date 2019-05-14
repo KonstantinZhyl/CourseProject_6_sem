@@ -97,3 +97,26 @@ main h2 {
     color: aliceblue;
 
 }
+
+#discrpt {
+    color: aliceblue;
+    font-size: 18px;
+    width: 40em;
+    font-size: 30px;
+}
+.sel {
+    background-color: blue;
+    border: 1px solid red;
+}
+
+table td {
+    height: 70px;
+    width: 120px;
+    color: aliceblue;
+    text-align: center;
+    font-size: 22px;
+}
+
+#post {
+    margin: 50px 0 0 0;
+}
