@@ -25,10 +25,7 @@
         </nav>      
     </header>
     <main>
-        <select id="list" size="2">
-            <option selected class="opt">123 (123 kKal)</option>
-            <option class="opt">321</option>
-        </select>
+        <select id="list"></select>
         <p id="discrpt">wfjkwpofpfgjrogfergrogjerogjerogjoergjowp</p>
         <button id="post" class="butt" type="button">Подтвердить</button>
     </main>
@@ -41,11 +38,14 @@
         </div>
     </footer>
     <script type='text/javascript'>
-        const opt = document.getElementsByClassName('opt');
-        const discrpt = document.getElementById('discrpt');
-        for (let j=0; j<opt.length; j++) opt[j].addEventListener('click', ()=>{
-          discrpt.innerHTML = list[j].discription;
-        });
+        function view() {
+          const opt = document.getElementsByClassName('opt');
+          const arr = document.getElementById('list');
+          const discrpt = document.getElementById('discrpt');
+          for (let j=0; j<opt.length; j++) opt[j].addEventListener('click', ()=>{
+            discrpt.innerHTML = list[j].discription;
+          });
+        }
         function getAllDiets(){
           var request = new XMLHttpRequest();
           request.open('GET', 'Http://Localhost:8765', true);
@@ -58,19 +58,21 @@
           } else {
             list = JSON.parse(this.responseText).Diets;
             for (var i=0; i<list.length; i++) {
-              let tmp = document.createElement('option');
+              var tmp = document.createElement('option');
               tmp.classList.add('opt');
               tmp.innerHTML = list[i].type + ' (' + list[i].calories + ' kKal)';
               if (i === 0) {
                 discrpt.innerHTML = list[i].discription;
-                tmp.setAttribute('selected');
+                tmp.setAttribute('selected', true);
               }
-              discrpt.appendChild(tmp);
+              arr.appendChild(tmp);
             }
+            view();
           }
         }
       } 
       var list;
+      getAllDiets();
     </script>
 </body>
 </html>

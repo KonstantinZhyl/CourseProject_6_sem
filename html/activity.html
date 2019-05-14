@@ -27,17 +27,16 @@
     </header>
     <main>
         <h3>Ваша активность</h3>
-        <div class="graph">
-            
-        </div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <div id="chart_div" class="graph"></div>
         <div class="info">
-            <h2>Шаги за сегодня : <input id='shag'/></h2> 
+            <h2>Шаги за сегодня : <input id='shag'/> <span>(км)</span></h2> 
             <button class="butt" type="button">Добавить шаги</button>
             
-            <h2>Тренировка за сегодня : <input id='tren'/></h2> 
+            <h2>Тренировка за сегодня </h2> 
             <button class="button_diet2" type="button">Добавить тренировку</button>
             
-            <h2>Сон за сегодня : <input id='son'/></h2> 
+            <h2>Сон за сегодня : <input id='son'/> <span>(ч)</span></h2> 
             <button class="button_diet2" type="button">Добавить сон</button>
             <hr class="line"/>
         </div>
@@ -58,5 +57,33 @@
             </div>
           </div>
     </footer>
+    <script type="text/javascript">
+      function drawBasic() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Day');
+        data.addColumn('number', 'kKal');
+
+        data.addRows([
+          ['Day 1', 10],  ['Day 2', 23],  ['Day 3', 17]
+        ]);
+        
+        var options = {
+          hAxis: {
+            title: 'Last week'
+          },
+          vAxis: {
+            title: 'Kkal'
+          },
+          backgroundColor: '#11111',
+          colors:['red','#004411']
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+      google.charts.load('current', {packages: ['corechart', 'line']});
+      google.charts.setOnLoadCallback(drawBasic);
+    </script>
 </body>
 </html>
