@@ -118,7 +118,7 @@ public class API extends DatabaseHandler {
             case "registration":
                 registrate();
                 break;
-            case "addProduct":
+            case "addProducts":
                 addProducts();
                 break;
             case "updateDiet":
