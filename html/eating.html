@@ -88,9 +88,8 @@
             for (var k = 0; k < list.length; k++) if (arr[i].value == list[k].name) 
             json[j] = {
               name: arr[i].value,
-              kol: arr[i + 1].value,
               id: list[k].id,
-              calories: list[k].calories
+              calories: Math.round(arr[i + 1].value / 100 * list[k].calories)
             }
         }
         var mess = {
