@@ -44,6 +44,12 @@
         </div>
     </footer>
     <script type='text/javascript'>
+      function getCookie(name) {
+          var matches = document.cookie.match(new RegExp(
+              "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+          ));
+          return matches ? decodeURIComponent(matches[1]) : undefined;
+      }
       function getAllProducts(){
           var temp;
         var request = new XMLHttpRequest();
@@ -94,6 +100,7 @@
         request.open('POST', '/html/mainAush.html', true);
         request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         request.setRequestHeader('command', 'addProducts');
+        request.setRequestHeader('login', getCookie('login'));
         request.send(mess);
         request.onreadystatechange = function(){
           if (this.readyState != 4) return;

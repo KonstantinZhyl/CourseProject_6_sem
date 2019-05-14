@@ -182,7 +182,7 @@ public class DatabaseHandler extends Configs {
                 " VALUES(?, ?, ?, ?, ?)";
         PreparedStatement prSt = connection.prepareStatement(insert);
         prSt.setString(1, object.getString("name"));
-        prSt.setString(2, object.getString("calories"));
+        prSt.setInt(2, object.getInteger("calories"));
         prSt.setInt(3, object.getInteger("protein"));
         prSt.setInt(4, object.getInteger("fat"));
         prSt.setInt(5, object.getInteger("carbons"));
@@ -242,6 +242,33 @@ public class DatabaseHandler extends Configs {
         }
         result.put("Diets", result_array);
         return result;
+    }
+
+    // Ingestion
+
+    public boolean dbInsertIngestion(int user_id, String date, int calories) throws SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        String insert = "INSERT INTO " + INGESTION_TABLE + "(user_id, date, calories)" +
+                " VALUES(?, ?, ?)";
+        PreparedStatement prSt = connection.prepareStatement(insert);
+        prSt.setInt(1, user_id);
+        prSt.setString(2, date);
+        prSt.setInt(3, calories);
+        prSt.executeUpdate();
+        return true;
+    }
+
+    public int dbGetLastIngestionId() throws SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT (id) from " + INGESTION_TABLE);
+        int max_id = 0;
+        while (rs.next()) {
+            if (rs.getInt("id") > max_id) {
+                max_id = rs.getInt("id");
+            }
+        }
+        return max_id;
     }
 
     // Deleting

@@ -6,6 +6,9 @@ import com.sun.net.httpserver.HttpExchange;
 import java.io.*;
 import java.nio.file.Files;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.json.simple.DeserializationException;
@@ -59,7 +62,7 @@ public class API extends DatabaseHandler {
         br.close();
         isr.close();
 
-        if (body.equals("")) {
+        if (!body.toString().equals("")) {
             this.body = (JsonObject) Jsoner.deserialize(body.toString());
         } else {
             this.body = null;
@@ -148,8 +151,23 @@ public class API extends DatabaseHandler {
 
     private void addProducts() throws SQLException, ClassNotFoundException, IOException {
         JsonArray products = (JsonArray) this.body.get("Products");
-        for (int i=0; i < products.size(); i++) {
-            dbInsertProduct((JsonObject) products.get(i));
+        int calories = 0;
+        for (int i = 0; i < products.size(); i++) {
+            JsonObject product = (JsonObject) products.get(i);
+            calories += product.getInteger("calories");
+        }
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        String dt = dateFormat.format(date);
+        String login = headers.getFirst("login");
+        int user_id = getUserIdByLogin(login);
+        dbInsertIngestion(user_id, dt, calories);
+        int ingestion_id = dbGetLastIngestionId();
+
+        for (int i = 0; i < products.size(); i++) {
+            JsonObject product = (JsonObject) products.get(i);
+            product.put("ingestion_id", ingestion_id);
+            dbInsertProduct(product);
         }
     }
 
