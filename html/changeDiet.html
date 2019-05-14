@@ -25,7 +25,7 @@
         </nav>      
     </header>
     <main>
-        <select id="list"></select>
+        <select id="list1"></select>
         <p id="discrpt">wfjkwpofpfgjrogfergrogjerogjerogjoergjowp</p>
         <button id="post" class="butt" type="button">Подтвердить</button>
     </main>
@@ -38,13 +38,12 @@
         </div>
     </footer>
     <script type='text/javascript'>
-        function view() {
-          const opt = document.getElementsByClassName('opt');
-          const arr = document.getElementById('list');
-          const discrpt = document.getElementById('discrpt');
-          for (let j=0; j<opt.length; j++) opt[j].addEventListener('click', ()=>{
-            discrpt.innerHTML = list[j].discription;
-          });
+        let list;
+        function getCookie(name) {
+            var matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
         }
         function getAllDiets(){
           var request = new XMLHttpRequest();
@@ -58,21 +57,28 @@
             return;
           } else {
             list = JSON.parse(this.responseText).Diets;
+
+            const arr = document.getElementById('list1');
+            const discrpt = document.getElementById('discrpt');
+
             for (var i=0; i<list.length; i++) {
               var tmp = document.createElement('option');
               tmp.classList.add('opt');
               tmp.innerHTML = list[i].type + ' (' + list[i].calories + ' kKal)';
               if (i === 0) {
-                discrpt.innerHTML = list[i].discription;
+                discrpt.innerHTML = list[i].description;
                 tmp.setAttribute('selected', true);
               }
               arr.appendChild(tmp);
             }
-            view();
+
           }
         }
-      } 
-      var list;
+      }
+        const opt = document.getElementsByClassName('opt');
+        for (let j=0; j<opt.length; j++) opt[j].addEventListener('click', ()=>{
+            discrpt.innerHTML = 123;
+        });
       getAllDiets();
     </script>
 </body>
