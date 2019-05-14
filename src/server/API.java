@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.json.simple.DeserializationException;
+import org.json.simple.JsonArray;
 import org.json.simple.JsonObject;
 import org.json.simple.Jsoner;
 import org.json.simple.parser.JSONParser;
@@ -101,6 +102,12 @@ public class API extends DatabaseHandler {
             case "getAllProducts":
                 getAllProducts();
                 break;
+            case "getUserDiet":
+                getUserDiet();
+                break;
+            case "getAllDiet":
+                getAllDiet();
+                break;
             default:
                 sendResponse(200, null);
 
@@ -115,9 +122,8 @@ public class API extends DatabaseHandler {
             case "addProduct":
                 addProduct();
                 break;
-            case "getUserDiet":
-                getUserDiet();
-                break;
+            case "updateDiet":
+                updateDiet();
             default:
                 sendResponse(200, null);
         }
@@ -138,16 +144,31 @@ public class API extends DatabaseHandler {
 
     private void getAllProducts() throws SQLException, ClassNotFoundException, IOException {
         JsonObject products = dbGetAllProducts();
-        sendResponse(200, products.toString());
+        sendResponse(200, products.toJson());
     }
 
     private void addProduct() throws SQLException, ClassNotFoundException, IOException {
-
+        JsonArray products = (JsonArray) this.body.get("Products");
+        for (int i=0; i < products.size(); i++) {
+            dbInsertProduct((JsonObject) products.get(i));
+        }
     }
 
     private void getUserDiet() throws SQLException, ClassNotFoundException, IOException {
-//        String login = headers.getFirst("login");
-//        int user_id = getUserIdByLogin(login);
-//        GetUser
+        String login = headers.getFirst("login");
+        int user_id = getUserIdByLogin(login);
+        JsonObject user = dbGetUser(user_id);
+        JsonObject diet = dbGetDiet(user.getInteger("diet_id"));
+        sendResponse(200, diet.toJson());
+    }
+
+    private void getAllDiet() throws SQLException, IOException, ClassNotFoundException {
+        JsonObject diets = dbGetAllDiet();
+        sendResponse(200, diets.toJson());
+    }
+
+    private void updateDiet() throws SQLException, ClassNotFoundException, IOException {
+        dbUpdateDiet(this.body);
+        sendResponse(200, null);
     }
 }

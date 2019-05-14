@@ -49,6 +49,8 @@ public class DatabaseHandler extends Configs {
         return false;
     }
 
+    // USER
+
     public boolean dbInsertUser(JsonObject object) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + USER_TABLE + "(login, password, name, surname, email, role, birthdate)" +
@@ -65,25 +67,28 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
-//    public boolean dbGetUser(int user_id) throws SQLException, ClassNotFoundException {
-//        Connection connection = getDbConnection();
-//        Statement stmt = connection.createStatement();
-//        ResultSet rs;
-//        JsonObject result = new JsonObject();
-//        JsonArray result_array = new JsonArray();
-//        Map object;
-//
-//        rs = stmt.executeQuery("SELECT id, name, surname, login, password, role, email, birthdate, diet_id FROM " + USER_TABLE);
-//        while (rs.next()) {
-//            object = new LinkedHashMap(4);
-//            object.put("id", rs.getInt("id"));
-//            object.put("type", rs.getString("type"));
-//            object.put("description", rs.getString("description"));
-//            object.put("calories", rs.getInt("calories"));
-//            result_array.add(object);
-//        }
-//        return result;
-//    }
+    public JsonObject dbGetUser(int user_id) throws SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs;
+        JsonObject object = new JsonObject();
+
+        rs = stmt.executeQuery("SELECT id, name, surname, login, password, role, email, birthdate, diet_id FROM " + USER_TABLE);
+        while (rs.next()) {
+            object.put("id", rs.getInt("id"));
+            object.put("type", rs.getString("name"));
+            object.put("description", rs.getString("surname"));
+            object.put("calories", rs.getInt("login"));
+            object.put("calories", rs.getInt("password"));
+            object.put("calories", rs.getInt("role"));
+            object.put("calories", rs.getInt("email"));
+            object.put("calories", rs.getInt("birthdate"));
+            object.put("calories", rs.getInt("diet_id"));
+        }
+        return object;
+    }
+
+    // Indicator
 
     public boolean dbInsertIndicator(JsonObject object) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
@@ -99,6 +104,8 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
+    // Activity
+
     public boolean dbInsertActivity(JsonObject object) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + ACTIVITY_TABLE + "(user_id, steps, training_calories, sleep, activity_calories, training_id)" +
@@ -113,6 +120,8 @@ public class DatabaseHandler extends Configs {
         prSt.executeUpdate();
         return true;
     }
+
+    // Exercise
 
     public boolean dbInsertExercise(JsonObject object) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
@@ -138,6 +147,8 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
+    // Training
+
     public boolean dbInsertTraining(JsonObject object) throws SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String insert = "INSERT INTO " + TRAINING_TABLE + "(training_id, duration, calories)" +
@@ -162,6 +173,77 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
+    //Product
+
+    public boolean dbInsertProduct(JsonObject object) throws SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        String insert = "INSERT INTO " + PRODUCT_TABLE + "(name, calories, protein, fat, carbons)" +
+                " VALUES(?, ?, ?, ?, ?)";
+        PreparedStatement prSt = connection.prepareStatement(insert);
+        prSt.setString(1, object.getString("name"));
+        prSt.setString(2, object.getString("calories"));
+        prSt.setInt(3, object.getInteger("protein"));
+        prSt.setInt(4, object.getInteger("fat"));
+        prSt.setInt(5, object.getInteger("carbons"));
+        prSt.executeUpdate();
+        return true;
+    }
+
+    // Diet
+
+    public boolean dbUpdateDiet(JsonObject object)
+            throws SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        String update = "UPDATE " + DIET_TABLE + " SET type = ?, description = ?, calories = ? WHERE id = ?";
+        PreparedStatement prSt = connection.prepareStatement(update);
+        prSt.setString(1, object.getString("type"));
+        prSt.setString(2, object.getString("description"));
+        prSt.setInt(3, object.getInteger("calories"));
+        prSt.setInt(4, object.getInteger("id"));
+        prSt.executeUpdate();
+        return true;
+    }
+
+    public JsonObject dbGetDiet(int diet_id)
+            throws SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs;
+        JsonObject object = new JsonObject();
+
+        rs = stmt.executeQuery("SELECT id, type, description, calories FROM " + DIET_TABLE);
+        while (rs.next()) {
+            object.put("id", rs.getInt("id"));
+            object.put("type", rs.getString("type"));
+            object.put("description", rs.getString("description"));
+            object.put("calories", rs.getInt("calories"));
+        }
+        return object;
+    }
+
+    public JsonObject dbGetAllDiet() throws IOException, SQLException, ClassNotFoundException {
+        Connection connection = getDbConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs;
+        JsonObject result = new JsonObject();
+        JsonArray result_array = new JsonArray();
+        Map object;
+
+        rs = stmt.executeQuery("SELECT id, type, description, calories FROM " + DIET_TABLE);
+        while (rs.next()) {
+            object = new LinkedHashMap(4);
+            object.put("id", rs.getInt("id"));
+            object.put("type", rs.getString("type"));
+            object.put("description", rs.getString("description"));
+            object.put("calories", rs.getInt("calories"));
+            result_array.add(object);
+        }
+        result.put("Diets", result_array);
+        return result;
+    }
+
+    // Deleting
+
     public boolean dbDelRow(int id, String table_name) throws IOException, SQLException, ClassNotFoundException {
         Connection connection = getDbConnection();
         String delete = "DELETE FROM " + table_name + " WHERE id = ?";
@@ -171,20 +253,6 @@ public class DatabaseHandler extends Configs {
         return true;
     }
 
-
-
-    public boolean dbUpdateDiet(int id, String type, String description, int calories)
-            throws SQLException, ClassNotFoundException {
-        Connection connection = getDbConnection();
-        String update = "UPDATE " + DIET_TABLE + " SET type = ?, description = ?, calories = ? WHERE id = ?";
-        PreparedStatement prSt = connection.prepareStatement(update);
-        prSt.setString(1, type);
-        prSt.setString(2, description);
-        prSt.setInt(3, calories);
-        prSt.setInt(4, id);
-        prSt.executeUpdate();
-        return true;
-    }
 
     public boolean dbUpdateTrainingInfo(int id, String description, String type, int intensity)
             throws SQLException, ClassNotFoundException {
@@ -222,26 +290,6 @@ public class DatabaseHandler extends Configs {
         while (rs.next()) {
             result = rs.getInt("id");
             break;
-        }
-        return result;
-    }
-
-    public JsonObject dbGetAllDiet() throws IOException, SQLException, ClassNotFoundException {
-        Connection connection = getDbConnection();
-        Statement stmt = connection.createStatement();
-        ResultSet rs;
-        JsonObject result = new JsonObject();
-        JsonArray result_array = new JsonArray();
-        Map object;
-
-        rs = stmt.executeQuery("SELECT id, type, description, calories FROM " + DIET_TABLE);
-        while (rs.next()) {
-            object = new LinkedHashMap(4);
-            object.put("id", rs.getInt("id"));
-            object.put("type", rs.getString("type"));
-            object.put("description", rs.getString("description"));
-            object.put("calories", rs.getInt("calories"));
-            result_array.add(object);
         }
         return result;
     }
