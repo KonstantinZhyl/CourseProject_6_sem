@@ -46,10 +46,31 @@
     </footer>
     
     <script type='text/javascript'> 
-      let current_diet;       
+      let current_diet, json;
       function drawBasic() {
-        var data = dat;
-
+          dat = new google.visualization.DataTable();
+          dat.addColumn('string', 'День');
+          dat.addColumn('number', 'кКал');
+          dat.addColumn('number', 'Тек. диета');
+          let cal = Array(7).fill(0), dd = Array(7).fill(0), i=json.length-1, k=0;
+          cal[0] += json[i].calories;
+          dd[0] = json[i].date;
+          while (i-1>=0){
+              if (json[i].date === json[i-1].date) {
+                  cal[k] +=json[i-1].calories;
+              } else {
+                  dat.addRows([
+                      [dd[k], cal[k], current_diet]
+                      ]);
+                  k++;
+                  cal[k] += json[i-1].calories;
+                  dd[k] = json[i-1].date;
+              }
+              i--;
+          }
+          dat.addRows([
+              [dd[k], cal[k], current_diet]
+          ]);
         var options = {
           hAxis: {
             title: 'Last week'
@@ -63,7 +84,7 @@
 
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 
-        chart.draw(data, options);
+        chart.draw(dat, options);
       }
       function getCookie(name) {
           var matches = document.cookie.match(new RegExp(
@@ -102,34 +123,16 @@
         request.setRequestHeader('password', getCookie('password'));
         request.send();
         request.onload = function() {
+            let dat;
             if (this.status != 200) {
                 alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
                 return;
             } else {
-              var json = JSON.parse(this.responseText).Ingestions;
-              json.sort((a,b) => a-b);
-              var dat = new google.visualization.DataTable();
-              dat.addColumn('string', 'День');
-              dat.addColumn('number', 'кКал');
-              dat.addColumn('number', 'Текущая диета');
-              let cal = Array(7).fill(0), dd = Array(7).fill(0), i=0, k=0;
-              cal[0] += json[0].calories;
-              dd[0] = json[0].date;
-              while (i+1<json.length){
-                if (json[i].date === json[i+1].date) {
-                  cal[k] +=json[i+1].calories;
-                } else {
-                  dat.addRows([dd[k], cal[k], current_diet]);
-                  k++;
-                  cal[k] += json[i+1].calories;
-                  dd[k] = json[i+1].date;
-                }
-                i++;
-              }
+              json = JSON.parse(this.responseText).Ingestions;
+              
+                google.charts.load('current', {packages: ['corechart', 'line']});
+                google.charts.setOnLoadCallback(drawBasic);
             }
-            dat.addRows([dd[6], cal[6]]);
-            google.charts.load('current', {packages: ['corechart', 'line']});
-            google.charts.setOnLoadCallback(drawBasic);
         }
       }
       getDiet();
