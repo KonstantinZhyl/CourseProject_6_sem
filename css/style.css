@@ -3,7 +3,20 @@
     padding: 0;
     margin: 0;
     transition: .5s ease-in-out; /* добавим плавность переходов для всех элементов страницы*/
+    
 }
+@font-face{
+
+    font-family: 'AlexBrush';
+
+    src: url('./css/AlexBrush-Regular.ttf') format('truetype');
+
+    font-weight: normal;
+
+    font-style: normal;
+    
+}
+
 ul {
     list-style: none;
 }
@@ -16,8 +29,8 @@ img {
     width: 100%;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display';
-    font-weight: normal;
+    font-family: 'AlexBrush';
+    
     letter-spacing: 1px;
 }
 
@@ -26,11 +39,10 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
 }
 body {
-    font-family: 'Open Sans', arial, sans-serif;
-    font-size: 14px;
+    font-family:'Droid Sans', arial, serif;;
     line-height: 1;
     color: #373737;
-    background: #4ea15c;
+    background: white;
 }
 /* добавим очистку потока для всех контейнеров, внутри которых задано обтекание дочерних элементов */
 header:after, .container:after, footer:after, .widget-posts-list li:after, #subscribe:after {
@@ -84,9 +96,7 @@ header {
     width: 50px;
     margin-left: 30px;
     margin-right: 10px;
-    background-color: yellow;
-    color: rgb(7, 10, 219);
-    border-radius: 45%;
+    border-radius: 25%;
     margin-top: auto;
 }
 #reg {
@@ -94,9 +104,7 @@ header {
     width: 150px;
     margin-left: 10px;
     margin-right: 0px;
-    background-color: yellow;
-    color: rgb(7, 10, 219);
-    border-radius: 45%;
+    border-radius: 20%;
     margin-top: auto;
 }
 /* меню */
@@ -177,10 +185,15 @@ header {
     width: 30px;
     height: 30px;
     line-height: 30px;
-    border-radius: 50%;
+    border-radius: 5%;
     margin: 5px 0;
     text-align: center;
     text-shadow: 2px 2px 1px rgba(0,0,0,.4);
+}
+button {
+    background: rgb(95, 97, 236);
+    color: white;
+    border-radius: 25%;
 }
 .logo span:nth-child(odd) {
     background: #EF5A42;
@@ -340,7 +353,7 @@ aside {
 .widget-category-list li a:before {
     content: "\f105";
     display: inline-block;
-    font-family: 'FontAwesome';
+    font-family: 'AlexBrush';
     margin-right: 10px;
     color: #c6c6c6;
 }

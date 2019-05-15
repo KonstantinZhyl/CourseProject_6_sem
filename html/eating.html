@@ -28,10 +28,6 @@
     <main>
         <center><button id="add" class="butt" type="button">add</button></center>
         <div id="place">
-          <div class="elems">
-            <input class="elem" placeholder="Продукт"/>
-            <input class="elem" placeholder="кол-во/масса(г)"/>
-          </div>
         </div>
         <center><button id="post" class="butt" type="button">Отослать</button></center>
     </main>
@@ -44,6 +40,17 @@
         </div>
     </footer>
     <script type='text/javascript'>
+      var area = document.createElement('div');
+      var input1 = document.createElement('input');
+      var input2 = document.createElement('input');
+      input1.classList.add('elem');
+      input2.classList.add('elem');
+      input1.setAttribute('placeholder', 'Продукт');
+      input2.setAttribute('placeholder', 'кол-во/масса(г)');
+      area.classList.add('elems')
+      area.appendChild(input1);
+      area.appendChild(input2);
+      document.getElementById('place').appendChild(area);
       function getCookie(name) {
           var matches = document.cookie.match(new RegExp(
               "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"

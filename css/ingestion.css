@@ -1,14 +1,14 @@
 main h3 {
     position: relative;
     font-size: 38px;
-    color: aliceblue;
+    color: black;
     text-align: center;
     margin-bottom: 40px;
 }
 main h2 {
     position: relative;
     font-size: 30px;
-    color: aliceblue;
+    color: black;
     margin-left: 20px;
     margin-bottom: 20px;
     margin-top: 20px;
@@ -23,9 +23,6 @@ main h2 {
     height: 50px;
     width: 170px;
     margin-left: 220px;
-    background-color: yellow;
-    color: rgb(7, 10, 219);
-    border-radius: 45%;
     margin-top: auto;
 }
 
@@ -33,11 +30,13 @@ main h2 {
     position: relative;
     height: 50px;
     width: 170px;
-    margin-left: 220px;
-    background-color: yellow;
-    color: rgb(7, 10, 219);
-    border-radius: 45%;
+    margin-left: 220px;  
     margin-top: 20px;
+}
+button {
+    background: rgb(95, 97, 236);
+    border-radius: 20%;
+    color: white;
 }
 
 .info {
@@ -94,12 +93,12 @@ main h2 {
     margin-bottom: 20px;
     margin-left: 20px;
     font-size: 20px;
-    color: aliceblue;
+    color: black;
 
 }
 
 #discrpt {
-    color: aliceblue;
+    color: black;
     font-size: 18px;
     width: 40em;
     font-size: 30px;
@@ -112,7 +111,7 @@ main h2 {
 table td {
     height: 70px;
     width: 120px;
-    color: aliceblue;
+    color: black;
     text-align: center;
     font-size: 22px;
 }

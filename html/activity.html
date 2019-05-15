@@ -55,10 +55,10 @@
         data.addColumn('number', 'kKal');
         console.log(new Date().toISOString().slice(0, 10));
         data.addRows([
-          [new Date().toISOString().slice(0, 8).concat('09'), 900], [new Date().toISOString().slice(0, 9).concat('0'), 500], 
+          [new Date().toISOString().slice(0, 9).concat('0'), 500], 
           [new Date().toISOString().slice(0, 9).concat('1'), 650], [new Date().toISOString().slice(0, 9).concat('2'), 450],
           [new Date().toISOString().slice(0, 9).concat('3'), 800], [new Date().toISOString().slice(0, 9).concat('4'), 650],
-          [new Date().toISOString().slice(0, 10), 200]
+          [new Date().toISOString().slice(0, 9).concat('5'), 200], [new Date().toISOString().slice(0, 10), 500],
         ]);
         
         var options = {
@@ -68,7 +68,7 @@
           vAxis: {
             title: 'Kkal'
           },
-          backgroundColor: '#11111',
+          backgroundColor: '#efd3fc',
           colors:['red','#004411']
         };
 

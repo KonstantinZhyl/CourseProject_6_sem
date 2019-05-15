@@ -18,7 +18,7 @@
               <span>Ж</span>
             </a>
             <ul id="menu">
-                <li id="back"><a>Главная</a></li>
+                <li id="back"><a href="" target="_self">Главная</a></li>
                 <li><a href="/html/aboutUs.html">О нас</a></li>
                 <li><a href="/html/ingestion.html">Питание</a></li>
                 <li><a href="/html/activity.html">Активность</a></li>
@@ -52,6 +52,7 @@
         document.getElementById('back').addEventListener('click', ()=>{
             if (getCookie('login') == null || getCookie('login') == '') window.open('/html/main.html');
             else window.open('/html/mainAush.html');
+            window.close(this);
         });
     </script>
 </body>
